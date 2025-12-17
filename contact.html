@@ -7,14 +7,71 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Modern Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        /* Contact Header - Enhanced */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+        }
+        
+        .logo-text {
+            color: #333;
+        }
+        
+        .logo-highlight {
+            color: #4361ee;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        
+        .nav-links a:hover {
+            color: #4361ee;
+            background: rgba(67, 97, 238, 0.1);
+        }
+        
+        .nav-links .active {
+            color: #4361ee;
+            background: rgba(67, 97, 238, 0.1);
+        }
+        
+        /* Contact Header */
         .contact-header {
             background: linear-gradient(135deg, #4361ee 0%, #3a56d4 30%, #7209b7 100%);
             color: white;
@@ -55,7 +112,7 @@
             line-height: 1.6;
         }
         
-        /* Contact Container - Enhanced */
+        /* Contact Container */
         .contact-container {
             display: flex;
             gap: 50px;
@@ -65,7 +122,7 @@
             animation: fadeInUp 1s ease-out 0.4s both;
         }
         
-        /* Contact Info - Enhanced */
+        /* Contact Info */
         .contact-info {
             flex: 1;
             background: linear-gradient(145deg, #ffffff, #f8f9fa);
@@ -161,7 +218,7 @@
             background: linear-gradient(135deg, #3a56d4, #2a46c4);
         }
         
-        /* Contact Form - Enhanced */
+        /* Contact Form */
         .contact-form {
             flex: 1;
             background: linear-gradient(145deg, #ffffff, #f8f9fa);
@@ -250,7 +307,7 @@
             transform: translateY(-1px);
         }
         
-        /* FAQ Section - Enhanced */
+        /* FAQ Section */
         .faq {
             max-width: 1000px;
             margin: 0 auto 100px;
@@ -312,6 +369,28 @@
             font-size: 1.05rem;
         }
         
+        /* Alert Messages */
+        .alert {
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+            display: none;
+        }
+        
+        .alert-success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border-left: 6px solid #27ae60;
+        }
+        
+        .alert-error {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            border-left: 6px solid #ff4757;
+        }
+        
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -321,6 +400,26 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
             }
         }
         
@@ -363,14 +462,17 @@
                 font-size: 2.2rem;
             }
             
-            .social-links {
-                justify-content: center;
+            .nav-links {
+                gap: 15px;
             }
             
-            .social-links a {
-                flex: 1;
-                min-width: 140px;
-                justify-content: center;
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 12px;
+            }
+            
+            nav {
+                padding: 15px 20px;
             }
         }
         
@@ -404,44 +506,12 @@
             }
         }
         
-        /* Floating Animation for Icons */
+        /* Floating Animation */
         .contact-method h3 i,
         .contact-info h2 i,
         .contact-form h2 i,
         .faq-item h3 i {
             animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-        
-        /* Success Animation for Form */
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            text-align: center;
-            animation: slideIn 0.5s ease-out;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
@@ -503,7 +573,22 @@
         
         <div class="contact-form">
             <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
-            <form action="thank-you.html" method="GET" id="contactForm">
+            
+            <!-- Success/Error Messages -->
+            <div id="successMessage" class="alert alert-success">
+                <i class="fas fa-check-circle"></i> Message sent successfully! Redirecting to thank you page...
+            </div>
+            
+            <div id="errorMessage" class="alert alert-error">
+                <i class="fas fa-exclamation-circle"></i> There was an error sending your message. Please try again or email us directly.
+            </div>
+            
+            <!-- Formspree Form with YOUR LINK -->
+            <form action="https://formspree.io/f/mlgrrrpd" method="POST" id="contactForm">
+                <!-- Hidden Fields for Formspree -->
+                <input type="hidden" name="_subject" value="New Contact Form Submission - YoLingo Website">
+                <input type="text" name="_gotcha" style="display:none">
+                
                 <div class="form-group">
                     <label for="name"><i class="fas fa-user"></i> Full Name *</label>
                     <input type="text" id="name" name="name" required placeholder="Your full name">
@@ -526,6 +611,7 @@
                         <option value="french">French Lessons (Parlons)</option>
                         <option value="spanish">Spanish Lessons (Hablemos)</option>
                         <option value="both">Both French & Spanish</option>
+                        <option value="not-sure">Not Sure Yet</option>
                     </select>
                 </div>
                 
@@ -537,15 +623,19 @@
                         <option value="elementary">Elementary (A2)</option>
                         <option value="intermediate">Intermediate (B1)</option>
                         <option value="advanced">Advanced (B2+)</option>
+                        <option value="native">Native Speaker</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label for="message"><i class="fas fa-comment-dots"></i> Your Message *</label>
-                    <textarea id="message" name="message" rows="6" required placeholder="Tell us about your language goals or ask any questions..."></textarea>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell us about your language goals, preferred schedule, or any questions you have..."></textarea>
                 </div>
                 
-                <button type="submit" class="btn-primary">
+                <!-- Optional: Add honeypot field for spam protection -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <button type="submit" class="btn-primary" id="submitBtn">
                     <i class="fas fa-paper-plane"></i> Send Message
                 </button>
             </form>
@@ -577,6 +667,96 @@
     </section>
 
     <script>
+        // Hide messages initially
+        document.getElementById('successMessage').style.display = 'none';
+        document.getElementById('errorMessage').style.display = 'none';
+        
+        // Formspree Submission Handler
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(this);
+                
+                // Add timestamp for tracking
+                formData.append('_timestamp', new Date().toISOString());
+                formData.append('_url', window.location.href);
+                
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success - show message
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Redirect to thank you page after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'thank-you.html';
+                    }, 2000);
+                } else {
+                    // Error from Formspree
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                // Show error message
+                errorMessage.style.display = 'block';
+                console.error('Form submission error:', error);
+                
+                // Keep error message visible for 5 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
+            } finally {
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Real-time validation
+        const form = document.getElementById('contactForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+        
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#ff4757';
+                    this.style.boxShadow = '0 0 0 4px rgba(255, 71, 87, 0.1)';
+                } else {
+                    this.style.borderColor = '#e0e0e0';
+                    this.style.boxShadow = 'none';
+                }
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = '#4361ee';
+                    this.style.boxShadow = '0 0 0 4px rgba(67, 97, 238, 0.1)';
+                }
+            });
+        });
+        
         // FAQ toggle functionality
         function toggleFAQ(element) {
             const allFAQ = document.querySelectorAll('.faq-item');
@@ -595,38 +775,34 @@
                 element.style.boxShadow = '0 20px 35px rgba(67, 97, 238, 0.15)';
             }
         }
-
-        // Form validation feedback
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            const requiredFields = this.querySelectorAll('[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.style.borderColor = '#ff4757';
-                    field.style.boxShadow = '0 0 0 4px rgba(255, 71, 87, 0.1)';
-                } else {
-                    field.style.borderColor = '#e0e0e0';
-                    field.style.boxShadow = 'none';
+        
+        // Form auto-save to localStorage (optional feature)
+        const formFields = ['name', 'email', 'phone', 'language', 'level', 'message'];
+        
+        // Load saved form data
+        formFields.forEach(field => {
+            const savedValue = localStorage.getItem(`yolingo_${field}`);
+            if (savedValue) {
+                const element = document.getElementById(field);
+                if (element) {
+                    element.value = savedValue;
                 }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields marked with *');
             }
         });
-
-        // Input focus effects
-        const inputs = document.querySelectorAll('input, select, textarea');
+        
+        // Save form data on input
         inputs.forEach(input => {
-            input.addEventListener('focus', function() {
-                this.parentElement.style.transform = 'translateY(-2px)';
+            input.addEventListener('input', function() {
+                if (formFields.includes(this.id)) {
+                    localStorage.setItem(`yolingo_${this.id}`, this.value);
+                }
             });
-            
-            input.addEventListener('blur', function() {
-                this.parentElement.style.transform = 'translateY(0)';
+        });
+        
+        // Clear saved data on successful submission
+        form.addEventListener('submit', () => {
+            formFields.forEach(field => {
+                localStorage.removeItem(`yolingo_${field}`);
             });
         });
     </script>
