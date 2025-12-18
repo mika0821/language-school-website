@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YoLingo | Learn French & Spanish with Native Teachers</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -13,7 +16,10 @@
         <div class="logo">
             <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
         </div>
-        <div class="nav-links">
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="parlons.html">Parlons (French)</a>
             <a href="hablemos.html">Hablemos (Spanish)</a>
@@ -30,27 +36,25 @@
             
             <div class="language-chooser">
                 <a href="parlons.html" class="language-card french-card">
-                    <div class="card-overlay"></div>
                     <div class="card-content">
                         <h2>🇫🇷 Parlons Français</h2>
                         <p>Discover the language of love, art, and culture</p>
                         <ul>
-                            <li>🗼 Learn with teachers from Paris</li>
-                            <li>🎨 Cultural immersion activities</li>
-                            <li>🎯 DELF certification preparation</li>
+                            <li>🗼 Learn with teachers from France</li>
+                            <li>🎭 Cultural immersion activities</li>
+                            <li>🎯 DELF/DALF & Baccalaureate preparation</li>
                         </ul>
                         <span class="start-link">Start Learning French →</span>
                     </div>
                 </a>
                 
                 <a href="hablemos.html" class="language-card spanish-card">
-                    <div class="card-overlay"></div>
                     <div class="card-content">
                         <h2>🇪🇸 ¡Hablemos Español!</h2>
                         <p>Explore vibrant Spanish culture and language</p>
                         <ul>
                             <li>💃 Learn with teachers from Spain</li>
-                            <li>🌮 Cultural cooking sessions</li>
+                            <li>🌍 Cultural immersion activities</li>
                             <li>🎯 DELE certification preparation</li>
                         </ul>
                         <span class="start-link">Start Learning Spanish →</span>
@@ -66,27 +70,27 @@
         
         <div class="features-grid">
             <div class="feature">
-                <div class="feature-icon">🎯</div>
+                <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
                 <h3>Personalized Learning</h3>
                 <p>Custom lesson plans based on your goals, level, and learning style.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon">👨‍🏫</div>
+                <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                 <h3>Native Teachers</h3>
                 <p>Certified native speakers from France and Spain with teaching experience.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon">🕒</div>
+                <div class="feature-icon"><i class="fas fa-calendar-alt"></i></div>
                 <h3>Flexible Schedule</h3>
                 <p>Morning, evening & weekend classes to fit your busy lifestyle.</p>
             </div>
             
             <div class="feature">
-                <div class="feature-icon">🌍</div>
+                <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
                 <h3>Cultural Immersion</h3>
-                <p>Learn language through culture, food, music, and real conversations.</p>
+                <p>Learn language through culture, history, music, and real conversations.</p>
             </div>
         </div>
     </section>
@@ -140,18 +144,15 @@
             
             <div class="footer-section">
                 <h4>Contact Info</h4>
-                <p>📧 hello@yolingo.com</p>
-                <p>📞 +1 (555) 123-4567</p>
-                <p>📍 123 Language Street, Education City</p>
+                <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
+                <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
             </div>
             
             <div class="footer-section">
                 <h4>Follow YoLingo</h4>
                 <div class="social">
-                    <a href="#">📘 Facebook</a>
-                    <a href="#">📷 Instagram</a>
-                    <a href="#">🐦 Twitter</a>
-                    <a href="#">▶️ YouTube</a>
+                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
                 </div>
             </div>
         </div>
@@ -160,5 +161,23 @@
             <p>&copy; 2024 YoLingo Language School. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
