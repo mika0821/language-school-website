@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parlons Français | French Lessons - YoLingo</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="logo">
             <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
         </div>
-        <div class="nav-links">
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="parlons.html" class="active">Parlons (French)</a>
             <a href="hablemos.html">Hablemos (Spanish)</a>
@@ -18,28 +28,30 @@
         </div>
     </nav>
     
+    <!-- Header -->
     <header class="page-header french-header">
         <h1>🇫🇷 Parlons Français avec YoLingo</h1>
-        <p class="subtitle">Immerse yourself in the beautiful language of French culture, cuisine, and conversation</p>
+        <p class="subtitle">Immerse yourself in the beautiful language of French culture, history, and conversation</p>
     </header>
     
+    <!-- Course Details -->
     <section class="course-details">
         <div class="course-info">
             <h2>Why Learn French with YoLingo?</h2>
-            <p>French is spoken by over 300 million people worldwide. At YoLingo, we don't just teach grammar - we immerse you in French culture, from Parisian cafes to Provencal markets.</p>
+            <p>French is spoken by over 300 million people worldwide. At YoLingo, we don't just teach grammar - we immerse you in French culture, from Parisian art to historical landmarks.</p>
             
             <div class="benefits">
                 <div class="benefit">
-                    <h3>🎓 Certified Teachers</h3>
-                    <p>All our French teachers are native speakers with DELF/DALF certification.</p>
+                    <h3><i class="fas fa-user-graduate"></i> Certified Teachers</h3>
+                    <p>All our French teachers are native speakers with DELF/DALF certification and teaching degrees.</p>
                 </div>
                 <div class="benefit">
-                    <h3>🗼 Cultural Activities</h3>
-                    <p>Monthly French film nights, cooking classes, and conversation clubs.</p>
+                    <h3><i class="fas fa-landmark"></i> Cultural Activities</h3>
+                    <p>Monthly French film nights, historical discussions, and conversation clubs with cultural themes.</p>
                 </div>
                 <div class="benefit">
-                    <h3>📊 Progress Tracking</h3>
-                    <p>Regular assessments and personalized feedback to track your improvement.</p>
+                    <h3><i class="fas fa-chart-line"></i> Progress Tracking</h3>
+                    <p>Regular assessments and personalized feedback with detailed progress reports.</p>
                 </div>
             </div>
         </div>
@@ -49,29 +61,124 @@
             
             <div class="level">
                 <h3>A1 - Complete Beginner</h3>
-                <p><strong>Duration:</strong> 8 weeks (16 sessions)</p>
-                <p><strong>You'll learn:</strong> Basic greetings, introductions, simple conversations, French alphabet</p>
-                <p><strong>Price:</strong> $299</p>
+                <p><strong>Perfect for:</strong> Absolute beginners starting their French journey</p>
+                <p><strong>You'll master:</strong> Essential greetings, basic conversations, introducing yourself, understanding simple instructions</p>
+                <p><strong>Goal:</strong> Hold basic conversations in everyday situations</p>
             </div>
             
             <div class="level">
                 <h3>A2 - Elementary</h3>
-                <p><strong>Duration:</strong> 10 weeks (20 sessions)</p>
-                <p><strong>You'll learn:</strong> Daily conversations, shopping, travel phrases, basic grammar</p>
-                <p><strong>Price:</strong> $349</p>
+                <p><strong>Perfect for:</strong> Those with basic knowledge wanting to expand skills</p>
+                <p><strong>You'll master:</strong> Daily life conversations, shopping, dining out, describing experiences, understanding common phrases</p>
+                <p><strong>Goal:</strong> Navigate real-life situations confidently in French-speaking countries</p>
             </div>
             
             <div class="level">
                 <h3>B1 - Intermediate</h3>
-                <p><strong>Duration:</strong> 12 weeks (24 sessions)</p>
-                <p><strong>You'll learn:</strong> Express opinions, discuss current events, understand French media</p>
-                <p><strong>Price:</strong> $399</p>
+                <p><strong>Perfect for:</strong> Learners ready for more complex conversations</p>
+                <p><strong>You'll master:</strong> Expressing opinions, discussing current events, understanding French media, workplace communication</p>
+                <p><strong>Goal:</strong> Communicate effectively in professional and social settings</p>
+            </div>
+            
+            <div class="level">
+                <h3>B2 - Advanced</h3>
+                <p><strong>Perfect for:</strong> Advanced learners preparing for certification</p>
+                <p><strong>You'll master:</strong> Complex debates, technical discussions, advanced writing, understanding nuances and idioms</p>
+                <p><strong>Goal:</strong> Achieve fluency and prepare for DELF/DALF exams</p>
             </div>
         </div>
     </section>
     
+    <!-- CTA Button -->
     <div class="center-button">
         <a href="contact.html" class="btn btn-primary">Start Your French Journey Today</a>
+        <p style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Contact us for personalized pricing and schedule options</p>
     </div>
+
+    <!-- Features Section -->
+    <section class="why-yolingo" style="background: var(--light);">
+        <h2>Our French Learning Methodology</h2>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-comments"></i></div>
+                <h3>Conversation-Focused</h3>
+                <p>70% of each lesson is dedicated to speaking practice with native teachers.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-film"></i></div>
+                <h3>Cultural Media</h3>
+                <p>Learn through French films, music, news, and authentic materials.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Interactive Learning</h3>
+                <p>Games, role-plays, and simulations for engaging practice.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                <h3>Goal-Oriented</h3>
+                <p>Clear learning objectives for every session with measurable outcomes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">Yo<span class="logo-highlight">Lingo</span></div>
+                <p>Making language learning accessible, fun, and effective since 2020.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="parlons.html">French Lessons</a>
+                <a href="hablemos.html">Spanish Lessons</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
+                <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow YoLingo</h4>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 YoLingo Language School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
