@@ -4,174 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - YoLingo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .thank-you-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
         }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 0;
-            margin-bottom: 40px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .logo span {
-            color: #4361ee;
-        }
-        .nav-links a {
-            margin-left: 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        .nav-links a:hover {
-            color: #4361ee;
-        }
-        .success-icon {
-            font-size: 80px;
+        
+        .success-animation {
+            font-size: 100px;
             color: #2ecc71;
             margin: 30px 0;
+            animation: bounce 1s infinite alternate;
         }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
         }
-        .message-box {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 10px;
-            margin: 40px 0;
-        }
-        .message-box p {
-            font-size: 18px;
-            color: #333;
-            margin: 15px 0;
-        }
-        .explore-links {
-            margin: 40px 0;
-            padding: 30px;
-            background: #f0f7ff;
-            border-radius: 10px;
-        }
-        .explore-links h3 {
-            color: #4361ee;
-            margin-bottom: 20px;
-        }
-        .link-item {
-            display: inline-block;
-            margin: 10px 15px;
-            padding: 12px 25px;
-            background: white;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .link-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-        .link-item.french {
-            border-left: 4px solid #4361ee;
-        }
-        .link-item.spanish {
-            border-left: 4px solid #ff6b6b;
-        }
-        .link-item.pricing {
-            border-left: 4px solid #2ecc71;
-        }
-        .action-buttons {
-            margin: 40px 0;
-        }
-        .btn {
-            display: inline-block;
-            background: #4361ee;
+        
+        .thank-you-message {
+            background: linear-gradient(135deg, #4361ee, #3a56d4);
             color: white;
-            padding: 16px 35px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background 0.3s;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.3);
         }
-        .btn:hover {
-            background: #3a56d4;
+        
+        .thank-you-message h1 {
+            color: white;
+            margin-bottom: 20px;
         }
-        .btn-secondary {
-            background: #666;
+        
+        .next-steps {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
         }
-        .btn-secondary:hover {
-            background: #555;
-        }
-        .contact-footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-            color: #666;
-        }
-        .contact-footer strong {
+        
+        .next-steps h3 {
             color: #4361ee;
+            margin-bottom: 20px;
         }
-        @media (max-width: 768px) {
-            .link-item {
-                display: block;
-                margin: 10px 0;
-            }
-            .btn {
-                display: block;
-                margin: 10px 0;
-            }
-            .nav-links a {
-                margin-left: 10px;
-                font-size: 14px;
-            }
+        
+        .countdown {
+            font-size: 1.2rem;
+            color: #4361ee;
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
-        <div class="logo">Yo<span>Lingo</span></div>
-        <div class="nav-links">
+        <div class="logo">
+            <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
-            <a href="parlons.html">French Lessons</a>
-            <a href="hablemos.html">Spanish Lessons</a>
+            <a href="parlons.html">Parlons (French)</a>
+            <a href="hablemos.html">Hablemos (Spanish)</a>
             <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
         </div>
     </nav>
     
-    <div class="success-icon">✓</div>
-    
-    <h1>Thank You for Contacting YoLingo!</h1>
-    
-    <div class="message-box">
-        <p>Your message has been sent successfully.</p>
-        <p>We'll review your inquiry and contact you within <strong>24 hours</strong>.</p>
-        <p>Our language experts are excited to help you start your journey!</p>
+    <div class="thank-you-container">
+        <div class="success-animation">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <div class="thank-you-message">
+            <h1>Thank You for Contacting YoLingo!</h1>
+            <p style="font-size: 1.2rem; margin: 15px 0;">Your message has been sent successfully.</p>
+            <p style="font-size: 1.1rem; opacity: 0.95;">We'll review your inquiry and contact you within <strong>24 hours</strong>.</p>
+            <p style="margin-top: 20px; font-size: 1rem;">Our language experts are excited to help you start your journey!</p>
+        </div>
+        
+        <div class="next-steps">
+            <h3>📋 What Happens Next?</h3>
+            <ol style="text-align: left; max-width: 600px; margin: 0 auto; padding-left: 20px;">
+                <li style="margin-bottom: 15px;">We'll email you within 24 hours to schedule a consultation</li>
+                <li style="margin-bottom: 15px;">You'll have a free 15-minute chat with our language advisor</li>
+                <li style="margin-bottom: 15px;">We'll match you with the perfect teacher for your goals</li>
+                <li>You'll schedule your first lesson at your convenience</li>
+            </ol>
+            
+            <div class="countdown" id="countdown">
+                Redirecting to homepage in <span id="timer">10</span> seconds...
+            </div>
+        </div>
+        
+        <div style="margin: 40px 0;">
+            <h3 style="color: #4361ee; margin-bottom: 20px;">In the meantime, explore our resources:</h3>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+                <a href="parlons.html" class="btn" style="background: #0055a4;">
+                    <i class="fas fa-flag"></i> French Lessons
+                </a>
+                <a href="hablemos.html" class="btn" style="background: #aa151b;">
+                    <i class="fas fa-flag"></i> Spanish Lessons
+                </a>
+                <a href="pricing.html" class="btn" style="background: #4361ee;">
+                    <i class="fas fa-tag"></i> Pricing Plans
+                </a>
+                <a href="index.html" class="btn" style="background: #666;">
+                    <i class="fas fa-home"></i> Homepage
+                </a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; color: #666;">
+            <p><i class="fas fa-envelope"></i> Need immediate assistance? Email: <strong>contact@yolingo.info</strong></p>
+            <p style="margin-top: 10px;"><i class="fas fa-phone"></i> Call/WhatsApp: <strong>+1 818 262 1520</strong></p>
+        </div>
     </div>
-    
-    <div class="explore-links">
-        <h3>In the meantime, you can explore our:</h3>
-        <a href="parlons.html" class="link-item french">🇫🇷 French Lessons</a>
-        <a href="hablemos.html" class="link-item spanish">🇪🇸 Spanish Lessons</a>
-        <a href="pricing.html" class="link-item pricing">💰 Pricing Plans</a>
-    </div>
-    
-    <div class="action-buttons">
-        <a href="index.html" class="btn">Return to Homepage</a>
-        <a href="contact.html" class="btn btn-secondary">Send Another Message</a>
-    </div>
-    
-    <div class="contact-footer">
-        <p>Need immediate assistance? Email us at: <strong>hello@yolingo.com</strong></p>
-        <p style="margin-top: 10px; font-size: 14px;">We're here to help you learn!</p>
-    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="logo">Yo<span class="logo-highlight">Lingo</span></div>
+                <p>Making language learning accessible, fun, and effective since 2020.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="parlons.html">French Lessons</a>
+                <a href="hablemos.html">Spanish Lessons</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
+                <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow YoLingo</h4>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 YoLingo Language School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Countdown timer
+        let seconds = 10;
+        const timerElement = document.getElementById('timer');
+        
+        const countdown = setInterval(() => {
+            seconds--;
+            timerElement.textContent = seconds;
+            
+            if (seconds <= 0) {
+                clearInterval(countdown);
+                window.location.href = 'index.html';
+            }
+        }, 1000);
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
