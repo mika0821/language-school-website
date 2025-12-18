@@ -997,3 +997,23 @@ footer {
         gap: 30px;
     }
 }
+/* Fix for Contact Page Header */
+.contact-header {
+    background: 
+        linear-gradient(135deg, rgba(67, 97, 238, 0.85) 0%, rgba(58, 12, 163, 0.75) 100%),
+        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+}
+
+.contact-header::before {
+    background: rgba(0, 0, 0, 0.2); /* Lighter overlay */
+}
+
+.contact-header h1 {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.contact-header .subtitle {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
