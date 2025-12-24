@@ -8,7 +8,7 @@
     <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="theme-color" content="#4361ee">
+    <meta name="theme-color" content="#7b61ff">
     <!-- =================== -->
     
     <link rel="stylesheet" href="style.css">
@@ -138,12 +138,13 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-section">
-    <div class="footer-logo">
-        <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
-    </div>
-    <p>Making language learning accessible, fun, and effective since 2020.</p>
-</div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+                </div>
+                <p>Making language learning accessible, fun, and effective since 2020.</p>
+            </div>
             
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -190,6 +191,78 @@
                 navLinks.classList.remove('active');
             }
         });
+        
+        // Animate benefit cards on scroll
+        const benefitObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateX(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all benefit cards
+        document.querySelectorAll('.benefit').forEach((benefit, index) => {
+            benefit.style.opacity = '0';
+            benefit.style.transform = 'translateX(-20px)';
+            benefit.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            benefit.style.transitionDelay = (index * 0.1) + 's';
+            benefitObserver.observe(benefit);
+        });
+        
+        // Animate level cards on scroll
+        const levelObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all level cards
+        document.querySelectorAll('.level').forEach((level, index) => {
+            level.style.opacity = '0';
+            level.style.transform = 'translateY(20px)';
+            level.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            level.style.transitionDelay = (index * 0.1) + 's';
+            levelObserver.observe(level);
+        });
+        
+        // Smooth scroll for CTA button
+        document.querySelector('.center-button .btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const href = this.getAttribute('href');
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+                window.location.href = href;
+            }, 200);
+        });
+        
+        // Highlight current level in URL hash
+        window.addEventListener('hashchange', highlightLevelFromHash);
+        window.addEventListener('load', highlightLevelFromHash);
+        
+        function highlightLevelFromHash() {
+            // Remove previous highlights
+            document.querySelectorAll('.level').forEach(level => {
+                level.style.boxShadow = 'var(--shadow)';
+            });
+            
+            // Highlight level from hash
+            const hash = window.location.hash;
+            if (hash) {
+                const levelElement = document.querySelector(hash);
+                if (levelElement) {
+                    levelElement.style.boxShadow = '0 0 0 3px var(--primary), var(--shadow)';
+                    levelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
     </script>
 </body>
 </html>
