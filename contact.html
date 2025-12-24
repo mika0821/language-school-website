@@ -8,32 +8,32 @@
     <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="theme-color" content="#4361ee">
+    <meta name="theme-color" content="#7b61ff">
     <!-- =================== -->
     
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<!-- Navigation -->
-<nav>
-    <div class="logo">
-        <img src="logo.jpg" alt="YoLingo" class="logo-image">
-        <div class="logo-text-container">
-            <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <img src="logo.jpg" alt="YoLingo" class="logo-image">
+            <div class="logo-text-container">
+                <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+            </div>
         </div>
-    </div>
-    <button class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="nav-links" id="navLinks">
-        <a href="index.html">Home</a>
-        <a href="parlons.html">Parlons (French)</a>
-        <a href="hablemos.html">Hablemos (Spanish)</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html" class="active">Contact</a>
-    </div>
-</nav>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="parlons.html">Parlons (French)</a>
+            <a href="hablemos.html">Hablemos (Spanish)</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </nav>
     
     <!-- Header -->
     <header class="page-header contact-header">
@@ -80,11 +80,11 @@
             <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
             
             <!-- Success/Error Messages -->
-            <div id="successMessage" class="alert alert-success">
+            <div id="successMessage" class="alert alert-success" style="display: none;">
                 <i class="fas fa-check-circle"></i> Message sent successfully! Redirecting to thank you page...
             </div>
             
-            <div id="errorMessage" class="alert alert-error">
+            <div id="errorMessage" class="alert alert-error" style="display: none;">
                 <i class="fas fa-exclamation-circle"></i> There was an error sending your message. Please try again or contact us directly.
             </div>
             
@@ -178,22 +178,22 @@
     <section class="faq">
         <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
         
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item">
             <h3><i class="fas fa-rocket"></i> How soon can I start lessons?</h3>
             <p>You can start within 48 hours of registration! We'll match you with a perfect teacher and schedule your first lesson. Most students have their first lesson within 24 hours.</p>
         </div>
         
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item">
             <h3><i class="fas fa-star"></i> Do you offer trial lessons?</h3>
             <p>Yes! Book a free 30-minute trial lesson to experience YoLingo's unique teaching style before committing. No credit card required for the trial.</p>
         </div>
         
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item">
             <h3><i class="fas fa-exchange-alt"></i> Can I switch teachers?</h3>
             <p>Absolutely! If the teaching style doesn't match your learning preferences, we'll find you a better match within 24 hours at no extra cost.</p>
         </div>
         
-        <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-item">
             <h3><i class="fas fa-clock"></i> What if I need to reschedule?</h3>
             <p>We offer flexible rescheduling with 24-hour notice. For private lessons, we guarantee make-up sessions. Group classes provide recorded sessions.</p>
         </div>
@@ -201,12 +201,13 @@
 
     <!-- Footer -->
     <footer>
-        <div class="footer-section">
-    <div class="footer-logo">
-        <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
-    </div>
-    <p>Making language learning accessible, fun, and effective since 2020.</p>
-</div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+                </div>
+                <p>Making language learning accessible, fun, and effective since 2020.</p>
+            </div>
             
             <div class="footer-section">
                 <h4>Quick Links</h4>
@@ -248,6 +249,26 @@
         document.getElementById('successMessage').style.display = 'none';
         document.getElementById('errorMessage').style.display = 'none';
         
+        // Form validation functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function showMessage(elementId, type, text) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${text}`;
+                element.className = `alert alert-${type}`;
+                element.style.display = 'block';
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
         // Formspree Submission Handler
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -260,6 +281,29 @@
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
             
+            // Validate required fields
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = 'var(--error)';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+                
+                if (field.type === 'email' && !validateEmail(field.value)) {
+                    field.style.borderColor = 'var(--error)';
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                showMessage('errorMessage', 'error', 'Please fill in all required fields correctly.');
+                return;
+            }
+            
             // Show loading state
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
@@ -268,7 +312,7 @@
             try {
                 const formData = new FormData(this);
                 
-                // Add timestamp for tracking
+                // Add tracking data
                 formData.append('_timestamp', new Date().toISOString());
                 formData.append('_url', window.location.href);
                 
@@ -281,29 +325,36 @@
                 });
                 
                 if (response.ok) {
-                    // Success - show message
-                    successMessage.style.display = 'block';
+                    // Success
+                    showMessage('successMessage', 'success', 'Message sent successfully! Redirecting...');
                     
                     // Reset form
                     this.reset();
+                    
+                    // Clear localStorage
+                    const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'message'];
+                    formFields.forEach(field => {
+                        localStorage.removeItem(`yolingo_${field}`);
+                    });
                     
                     // Redirect to thank you page after 2 seconds
                     setTimeout(() => {
                         window.location.href = 'thank-you.html';
                     }, 2000);
+                    
                 } else {
-                    // Error from Formspree
                     throw new Error('Form submission failed');
                 }
             } catch (error) {
-                // Show error message
-                errorMessage.style.display = 'block';
                 console.error('Form submission error:', error);
+                showMessage('errorMessage', 'error', 'Failed to send message. Please try again or contact us directly.');
                 
-                // Keep error message visible for 5 seconds
+                // Offer alternative contact method
                 setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
+                    if (confirm('Unable to send email. Would you like to contact us via WhatsApp instead?')) {
+                        window.open('https://wa.me/18182621520', '_blank');
+                    }
+                }, 1000);
             } finally {
                 // Reset button
                 submitBtn.innerHTML = originalText;
@@ -318,18 +369,17 @@
         inputs.forEach(input => {
             input.addEventListener('blur', function() {
                 if (this.hasAttribute('required') && !this.value.trim()) {
-                    this.style.borderColor = '#ff4757';
-                    this.style.boxShadow = '0 0 0 3px rgba(255, 71, 87, 0.1)';
+                    this.style.borderColor = 'var(--error)';
+                } else if (this.type === 'email' && this.value && !validateEmail(this.value)) {
+                    this.style.borderColor = 'var(--error)';
                 } else {
                     this.style.borderColor = '#ddd';
-                    this.style.boxShadow = 'none';
                 }
             });
             
             input.addEventListener('input', function() {
                 if (this.value.trim()) {
                     this.style.borderColor = 'var(--primary)';
-                    this.style.boxShadow = '0 0 0 3px rgba(67, 97, 238, 0.1)';
                 }
             });
         });
@@ -338,20 +388,20 @@
         function toggleFAQ(element) {
             const allFAQ = document.querySelectorAll('.faq-item');
             allFAQ.forEach(faq => {
-                if (faq !== element) {
-                    faq.style.transform = 'translateY(0)';
-                    faq.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
+                if (faq !== element && faq.classList.contains('active')) {
+                    faq.classList.remove('active');
                 }
             });
             
-            if (element.style.transform === 'translateY(-5px)') {
-                element.style.transform = 'translateY(0)';
-                element.style.boxShadow = '0 5px 15px rgba(0,0,0,0.08)';
-            } else {
-                element.style.transform = 'translateY(-5px)';
-                element.style.boxShadow = '0 10px 25px rgba(67, 97, 238, 0.15)';
-            }
+            element.classList.toggle('active');
         }
+        
+        // Add event listeners to FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                toggleFAQ(this);
+            });
+        });
         
         // Form auto-save to localStorage
         const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'message'];
