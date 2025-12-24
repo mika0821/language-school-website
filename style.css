@@ -580,11 +580,33 @@ nav {
     z-index: 1000;
 }
 
+/* Logo with Image + Text */
 .logo {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
-    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     cursor: pointer;
+    height: 50px;
+}
+
+.logo-image {
+    height: 100%;
+    width: auto;
+    max-height: 40px;
+    object-fit: contain;
+    transition: opacity 0.3s ease;
+}
+
+.logo-image:hover {
+    opacity: 0.9;
+}
+
+.logo-text-container {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1;
 }
 
 .logo-text {
@@ -596,6 +618,37 @@ nav {
     background: linear-gradient(45deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .logo {
+        height: 40px;
+        gap: 8px;
+    }
+    
+    .logo-text-container {
+        font-size: 1.8rem;
+    }
+    
+    .logo-image {
+        max-height: 35px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        height: 35px;
+        gap: 6px;
+    }
+    
+    .logo-text-container {
+        font-size: 1.5rem;
+    }
+    
+    .logo-image {
+        max-height: 30px;
+    }
 }
 
 .nav-links {
