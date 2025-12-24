@@ -1479,5 +1479,32 @@ footer {
 
 @media (max-width: 480px) {
     /* These styles are now handled in the very small screens section above */
+ 
     /* Keeping minimal essential overrides */
+
+    /* Footer Logo - Text Only */
+.footer-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.footer-logo .logo-text {
+    color: var(--dark);
+}
+
+.footer-logo .logo-highlight {
+    color: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Mobile footer logo */
+@media screen and (max-width: 768px) {
+    .footer-logo {
+        font-size: 1.8rem;
+    }
 }
