@@ -580,19 +580,19 @@ nav {
     z-index: 1000;
 }
 
-/* Logo with Image + Text - JUST IMAGE BIGGER */
+/* Logo with Image + Text - FIXED VERSION */
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* Increased spacing */
     cursor: pointer;
-    height: 70px; /* Even taller container */
+    height: 60px; /* Increased height */
 }
 
 .logo-image {
     height: 100%;
     width: auto;
-    max-height: 60px; /* Much bigger image */
+    max-height: 50px; /* Increased image size */
     object-fit: contain;
     transition: opacity 0.3s ease;
 }
@@ -601,29 +601,64 @@ nav {
     opacity: 0.9;
 }
 
+/* FIX for YoLingo text - no more cut-off letters */
 .logo-text-container {
     display: flex;
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
-    font-size: 2rem; /* Original text size */
-    line-height: 1;
+    font-size: 2.3rem; /* Slightly larger */
+    line-height: 1.1; /* Changed from 1 to prevent cutting */
+    padding-top: 2px; /* Small adjustment for better alignment */
 }
 
 .logo-text {
     color: var(--dark);
+    position: relative;
+    z-index: 1;
 }
 
 .logo-highlight {
     color: var(--primary);
+    position: relative;
+    z-index: 1;
+    /* Remove gradient background-clip which can cause cutting */
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+}
+
+/* Add a gradient underline effect instead of text gradient */
+.logo-highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
     background: linear-gradient(45deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    border-radius: 2px;
+    z-index: -1;
 }
 
 /* Mobile adjustments */
 @media screen and (max-width: 768px) {
     .logo {
-        height: 40px;
+        height: 50px;
+        gap: 10px;
+    }
+    
+    .logo-text-container {
+        font-size: 2rem;
+    }
+    
+    .logo-image {
+        max-height: 45px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        height: 45px;
         gap: 8px;
     }
     
@@ -632,22 +667,18 @@ nav {
     }
     
     .logo-image {
-        max-height: 35px;
+        max-height: 40px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    .logo {
-        height: 35px;
-        gap: 6px;
-    }
-    
-    .logo-text-container {
-        font-size: 1.5rem;
-    }
-    
+/* Optional: Hide image on very small screens */
+@media screen and (max-width: 360px) {
     .logo-image {
-        max-height: 30px;
+        display: none;
+    }
+    
+    .logo {
+        gap: 0;
     }
 }
 
@@ -709,8 +740,24 @@ h1 {
     color: var(--dark);
 }
 
+/* Make ALL YoLingo highlights consistent */
 .highlight {
     color: var(--primary);
+    position: relative;
+    display: inline-block;
+}
+
+/* Add the same underline effect to all YoLingo text */
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(45deg, var(--primary), var(--accent));
+    border-radius: 2px;
+    z-index: -1;
 }
 
 .subtitle {
