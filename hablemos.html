@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,21 +14,54 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
     <!-- Navigation -->
     <nav>
-        <div class="logo">
-            <img src="logo.jpg" alt="YoLingo" class="logo-image">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="logo.jpg" alt="YoLingo" class="logo-image" loading="lazy">
             <div class="logo-text-container">
                 <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
             </div>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        
+        <div class="nav-controls">
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="lang-toggle" onclick="toggleLanguageDropdown()">
+                    <i class="fas fa-globe"></i>
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown" id="languageDropdown">
+                    <a href="#" class="lang-option active" data-lang="en">
+                        <i class="fas fa-language"></i> English
+                    </a>
+                    <a href="#" class="lang-option" data-lang="fr">
+                        <i class="fas fa-language"></i> Français
+                    </a>
+                    <a href="#" class="lang-option" data-lang="ru">
+                        <i class="fas fa-language"></i> Русский
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            
+            <!-- Mobile menu button -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="parlons.html">Parlons (French)</a>
@@ -39,29 +72,29 @@
     </nav>
     
     <!-- Header -->
-    <header class="page-header spanish-header">
+    <header class="page-header spanish-header" id="main-content">
         <h1>🇪🇸 ¡Hablemos Español con YoLingo!</h1>
-        <p class="subtitle">Discover the vibrant world of Spanish language, music, and culture</p>
+        <p class="subtitle">Discover the vibrant world of Spanish language, music, culture, and conversation with native teachers from Spain.</p>
     </header>
     
     <!-- Course Details -->
     <section class="course-details">
         <div class="course-info">
             <h2>Why Learn Spanish with YoLingo?</h2>
-            <p>Spanish is the second most spoken language in the world. At YoLingo, we bring the passion of Spanish culture into every lesson, from flamenco rhythms to historical discoveries.</p>
+            <p>Spanish is the second most spoken language in the world with over 580 million speakers. At YoLingo, we bring the passion of Spanish culture into every lesson, from flamenco rhythms to historical discoveries, tapas culture to Latin American influences.</p>
             
             <div class="benefits">
-                <div class="benefit">
-                    <h3><i class="fas fa-user-graduate"></i> Native Teachers</h3>
-                    <p>All teachers are from Spain with DELE certification and university teaching degrees.</p>
+                <div class="benefit hover-lift">
+                    <h3><i class="fas fa-user-graduate"></i> Native Spanish Teachers</h3>
+                    <p>All teachers are from Spain with DELE certification and university teaching degrees. They provide authentic accent and cultural context.</p>
                 </div>
-                <div class="benefit">
-                    <h3><i class="fas fa-calendar-alt"></i> Interactive Events</h3>
-                    <p>Weekly conversation practice, cultural discussion groups, and study sessions with peers.</p>
+                <div class="benefit hover-lift">
+                    <h3><i class="fas fa-calendar-alt"></i> Interactive Cultural Events</h3>
+                    <p>Weekly conversation practice, cultural discussion groups, virtual tours of Spanish cities, cooking classes, and study sessions with peers.</p>
                 </div>
-                <div class="benefit">
-                    <h3><i class="fas fa-rocket"></i> Rapid Progress</h3>
-                    <p>Proven methods that get you speaking confidently from your very first lesson.</p>
+                <div class="benefit hover-lift">
+                    <h3><i class="fas fa-rocket"></i> Accelerated Learning</h3>
+                    <p>Proven methods that get you speaking confidently from your very first lesson. Our immersion approach accelerates language acquisition.</p>
                 </div>
             </div>
         </div>
@@ -69,40 +102,50 @@
         <div class="course-levels">
             <h2>Course Levels</h2>
             
-            <div class="level">
+            <div class="level hover-lift" id="level-a1">
                 <h3>A1 - Principiante</h3>
                 <p><strong>Perfect for:</strong> Complete beginners taking their first steps in Spanish</p>
-                <p><strong>You'll master:</strong> Essential greetings, basic self-introduction, simple questions, understanding everyday expressions</p>
-                <p><strong>Goal:</strong> Communicate in basic social situations and understand simple Spanish</p>
+                <p><strong>You'll master:</strong> Essential greetings, basic self-introduction, simple questions, understanding everyday expressions, numbers, and basic vocabulary.</p>
+                <p><strong>Goal:</strong> Communicate in basic social situations and understand simple Spanish.</p>
+                <p><strong>Duration:</strong> 8 weeks (2 sessions/week)</p>
             </div>
             
-            <div class="level">
+            <div class="level hover-lift" id="level-a2">
                 <h3>A2 - Elemental</h3>
                 <p><strong>Perfect for:</strong> Those with some basic knowledge ready to expand</p>
-                <p><strong>You'll master:</strong> Daily conversations, describing experiences, shopping interactions, understanding common texts</p>
-                <p><strong>Goal:</strong> Handle routine tasks and conversations in Spanish-speaking environments</p>
+                <p><strong>You'll master:</strong> Daily conversations, describing experiences, shopping interactions, understanding common texts, past and future tenses.</p>
+                <p><strong>Goal:</strong> Handle routine tasks and conversations in Spanish-speaking environments.</p>
+                <p><strong>Duration:</strong> 10 weeks (2 sessions/week)</p>
             </div>
             
-            <div class="level">
+            <div class="level hover-lift" id="level-b1">
                 <h3>B1 - Intermedio</h3>
                 <p><strong>Perfect for:</strong> Learners wanting to express complex ideas</p>
-                <p><strong>You'll master:</strong> Expressing opinions, discussing current events, understanding Spanish media, workplace vocabulary</p>
-                <p><strong>Goal:</strong> Engage in meaningful conversations on diverse topics</p>
+                <p><strong>You'll master:</strong> Expressing opinions, discussing current events, understanding Spanish media, workplace vocabulary, intermediate grammar.</p>
+                <p><strong>Goal:</strong> Engage in meaningful conversations on diverse topics in Spanish.</p>
+                <p><strong>Duration:</strong> 12 weeks (2 sessions/week)</p>
             </div>
             
-            <div class="level">
+            <div class="level hover-lift" id="level-b2">
                 <h3>B2 - Avanzado</h3>
                 <p><strong>Perfect for:</strong> Advanced speakers preparing for certification</p>
-                <p><strong>You'll master:</strong> Complex debates, technical discussions, advanced grammar, understanding cultural nuances</p>
-                <p><strong>Goal:</strong> Achieve fluency and prepare for DELE certification exams</p>
+                <p><strong>You'll master:</strong> Complex debates, technical discussions, advanced grammar, understanding cultural nuances, professional writing.</p>
+                <p><strong>Goal:</strong> Achieve fluency and prepare for DELE certification exams.</p>
+                <p><strong>Duration:</strong> 16 weeks (2 sessions/week)</p>
             </div>
         </div>
     </section>
     
     <!-- CTA Button -->
     <div class="center-button">
-        <a href="contact.html" class="btn btn-primary">Start Your Spanish Journey Today</a>
-        <p style="margin-top: 15px; color: var(--gray); font-size: 0.9rem;">Contact us for personalized pricing and schedule options</p>
+        <a href="contact.html?language=spanish" class="btn btn-primary">
+            <i class="fas fa-flag"></i>
+            Start Your Spanish Journey Today
+        </a>
+        <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+            <i class="fas fa-clock"></i> Free 30-minute trial lesson available | 
+            <i class="fas fa-calendar"></i> Flexible scheduling
+        </p>
     </div>
 
     <!-- Features Section -->
@@ -110,28 +153,62 @@
         <h2>Our Spanish Learning Approach</h2>
         
         <div class="features-grid">
-            <div class="feature">
+            <div class="feature hover-lift">
                 <div class="feature-icon"><i class="fas fa-microphone-alt"></i></div>
                 <h3>Speaking Emphasis</h3>
-                <p>Maximum speaking time with immediate feedback from native instructors.</p>
+                <p>Maximum speaking time with immediate feedback from native instructors. We focus on practical communication skills.</p>
             </div>
             
-            <div class="feature">
+            <div class="feature hover-lift">
                 <div class="feature-icon"><i class="fas fa-newspaper"></i></div>
                 <h3>Authentic Materials</h3>
-                <p>Learn through Spanish newspapers, podcasts, TV shows, and literature.</p>
+                <p>Learn through Spanish newspapers, podcasts, TV shows, films, literature, and contemporary cultural materials.</p>
             </div>
             
-            <div class="feature">
+            <div class="feature hover-lift">
                 <div class="feature-icon"><i class="fas fa-users"></i></div>
                 <h3>Group Dynamics</h3>
-                <p>Interactive group activities that simulate real-life conversations.</p>
+                <p>Interactive group activities that simulate real-life conversations, debates, and social interactions in Spanish.</p>
             </div>
             
-            <div class="feature">
+            <div class="feature hover-lift">
                 <div class="feature-icon"><i class="fas fa-chart-bar"></i></div>
                 <h3>Progress Tracking</h3>
-                <p>Weekly assessments and personalized learning path adjustments.</p>
+                <p>Weekly assessments and personalized learning path adjustments based on your progress and learning style.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teacher Spotlight -->
+    <section class="why-yolingo">
+        <h2>Meet Our Spanish Teachers</h2>
+        <div class="features-grid">
+            <div class="feature hover-lift">
+                <div class="feature-icon" style="background: var(--gradient-spanish);">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Carlos Rodríguez</h3>
+                <p><strong>From:</strong> Madrid, Spain</p>
+                <p><strong>Specialty:</strong> DELE Preparation & Business Spanish</p>
+                <p>12+ years teaching experience, University of Madrid graduate.</p>
+            </div>
+            <div class="feature hover-lift">
+                <div class="feature-icon" style="background: var(--gradient-spanish);">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Isabel García</h3>
+                <p><strong>From:</strong> Barcelona, Spain</p>
+                <p><strong>Specialty:</strong> Conversational Spanish & Pronunciation</p>
+                <p>Former Cervantes Institute teacher, linguistics specialist.</p>
+            </div>
+            <div class="feature hover-lift">
+                <div class="feature-icon" style="background: var(--gradient-spanish);">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3>Miguel Torres</h3>
+                <p><strong>From:</strong> Sevilla, Spain</p>
+                <p><strong>Specialty:</strong> Cultural Immersion & Andalusian Spanish</p>
+                <p>MA in Hispanic Studies, 9+ years teaching experience.</p>
             </div>
         </div>
     </section>
@@ -143,7 +220,15 @@
                 <div class="footer-logo">
                     <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
                 </div>
-                <p>Making language learning accessible, fun, and effective since 2020.</p>
+                <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
+                <div class="social" style="margin-top: 1.5rem;">
+                    <a href="#" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="#" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
             </div>
             
             <div class="footer-section">
@@ -159,110 +244,212 @@
                 <h4>Contact Info</h4>
                 <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
                 <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
             </div>
             
             <div class="footer-section">
-                <h4>Follow YoLingo</h4>
-                <div class="social">
-                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
+                <h4>Spanish Resources</h4>
+                <a href="#spanish-tips">Learning Tips</a>
+                <a href="#spanish-culture">Spanish Culture Blog</a>
+                <a href="#pronunciation">Pronunciation Guide</a>
+                <a href="#vocabulary">Vocabulary Builder</a>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 YoLingo Language School. All rights reserved.</p>
+            <p>&copy; 2026 YoLingo Language School. All rights reserved. | <a href="#" style="color: rgba(255,255,255,0.6);">Privacy Policy</a> | <a href="#" style="color: rgba(255,255,255,0.6);">Terms of Service</a></p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ===== THEME MANAGEMENT =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function getPreferredTheme() {
+            const savedTheme = localStorage.getItem('yolingo_theme');
+            if (savedTheme) return savedTheme;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('yolingo_theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            themeToggle.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(0)';
+            }, 300);
+        }
+        
+        applyTheme(getPreferredTheme());
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('yolingo_theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+        // ===== LANGUAGE MANAGEMENT =====
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-switcher')) {
+                document.getElementById('languageDropdown').classList.remove('show');
+            }
+        });
+        
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.dataset.lang;
+                document.querySelectorAll('.lang-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+                document.getElementById('languageDropdown').classList.remove('show');
+                
+                // Show notification
+                const notification = document.createElement('div');
+                notification.className = 'alert alert-success';
+                notification.style.position = 'fixed';
+                notification.style.top = '80px';
+                notification.style.right = '20px';
+                notification.style.zIndex = '10000';
+                notification.innerHTML = `<i class="fas fa-language"></i> Language changed to ${lang.toUpperCase()}`;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            });
+        });
+        
+        // ===== NAVIGATION =====
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+            document.querySelector('.menu-toggle i').classList.toggle('fa-bars');
+            document.querySelector('.menu-toggle i').classList.toggle('fa-times');
         }
-
-        // Close menu when clicking outside
+        
         document.addEventListener('click', function(event) {
             const navLinks = document.getElementById('navLinks');
             const menuToggle = document.querySelector('.menu-toggle');
             
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
                 navLinks.classList.remove('active');
+                document.querySelector('.menu-toggle i').classList.remove('fa-times');
+                document.querySelector('.menu-toggle i').classList.add('fa-bars');
             }
         });
         
-        // Animate benefit cards on scroll
-        const benefitObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateX(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        // Observe all benefit cards
-        document.querySelectorAll('.benefit').forEach((benefit, index) => {
-            benefit.style.opacity = '0';
-            benefit.style.transform = 'translateX(-20px)';
-            benefit.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            benefit.style.transitionDelay = (index * 0.1) + 's';
-            benefitObserver.observe(benefit);
-        });
-        
-        // Animate level cards on scroll
-        const levelObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        // Observe all level cards
-        document.querySelectorAll('.level').forEach((level, index) => {
-            level.style.opacity = '0';
-            level.style.transform = 'translateY(20px)';
-            level.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            level.style.transitionDelay = (index * 0.1) + 's';
-            levelObserver.observe(level);
-        });
-        
-        // Smooth scroll for CTA button
-        document.querySelector('.center-button .btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            const href = this.getAttribute('href');
+        // ===== LEVEL SCROLL HIGHLIGHTING =====
+        function highlightCurrentLevel() {
+            const sections = document.querySelectorAll('.level');
+            const scrollPosition = window.scrollY + 100;
             
-            // Add click animation
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    section.style.boxShadow = '0 0 0 3px var(--primary), var(--shadow-hover)';
+                    section.style.transform = 'translateY(-5px)';
+                } else {
+                    section.style.boxShadow = 'var(--shadow)';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // ===== ANIMATIONS =====
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.benefit, .level, .feature');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+        }
+        
+        // ===== SMOOTH SCROLL FOR LEVEL LINKS =====
+        document.querySelectorAll('a[href^="#level-"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // ===== CTA BUTTON ENHANCEMENT =====
+        document.querySelector('.center-button .btn').addEventListener('click', function(e) {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 this.style.transform = '';
-                window.location.href = href;
             }, 200);
+            
+            localStorage.setItem('yolingo_selected_language', 'spanish');
+            localStorage.setItem('yolingo_selection_time', new Date().toISOString());
         });
         
-        // Highlight current level in URL hash
-        window.addEventListener('hashchange', highlightLevelFromHash);
-        window.addEventListener('load', highlightLevelFromHash);
-        
-        function highlightLevelFromHash() {
-            // Remove previous highlights
-            document.querySelectorAll('.level').forEach(level => {
-                level.style.boxShadow = 'var(--shadow)';
-            });
+        // ===== INITIALIZE ON LOAD =====
+        window.addEventListener('load', function() {
+            animateOnScroll();
+            window.addEventListener('scroll', highlightCurrentLevel);
             
-            // Highlight level from hash
-            const hash = window.location.hash;
-            if (hash) {
-                const levelElement = document.querySelector(hash);
-                if (levelElement) {
-                    levelElement.style.boxShadow = '0 0 0 3px var(--primary), var(--shadow)';
-                    levelElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (window.location.hash) {
+                const targetElement = document.querySelector(window.location.hash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }, 500);
                 }
             }
-        }
+            
+            document.body.classList.add('loaded');
+        });
+        
+        // ===== KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('languageDropdown').classList.remove('show');
+                document.getElementById('navLinks').classList.remove('active');
+                document.querySelector('.menu-toggle i').classList.remove('fa-times');
+                document.querySelector('.menu-toggle i').classList.add('fa-bars');
+            }
+        });
     </script>
 </body>
 </html>
