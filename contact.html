@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,20 +12,56 @@
     <!-- =================== -->
     
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    
     <!-- Navigation -->
     <nav>
-        <div class="logo">
-            <img src="logo.jpg" alt="YoLingo" class="logo-image">
+        <div class="logo" onclick="window.location.href='index.html'">
+            <img src="logo.jpg" alt="YoLingo" class="logo-image" loading="lazy">
             <div class="logo-text-container">
                 <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
             </div>
         </div>
-        <button class="menu-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
-        </button>
+        
+        <div class="nav-controls">
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="lang-toggle" onclick="toggleLanguageDropdown()">
+                    <i class="fas fa-globe"></i>
+                    <span>EN</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="lang-dropdown" id="languageDropdown">
+                    <a href="#" class="lang-option active" data-lang="en">
+                        <i class="fas fa-language"></i> English
+                    </a>
+                    <a href="#" class="lang-option" data-lang="fr">
+                        <i class="fas fa-language"></i> Français
+                    </a>
+                    <a href="#" class="lang-option" data-lang="ru">
+                        <i class="fas fa-language"></i> Русский
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            
+            <!-- Mobile menu button -->
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="parlons.html">Parlons (French)</a>
@@ -36,9 +72,9 @@
     </nav>
     
     <!-- Header -->
-    <header class="page-header contact-header">
+    <header class="page-header contact-header" id="main-content">
         <h1><i class="fas fa-comments"></i> Contact YoLingo</h1>
-        <p class="subtitle">Have questions? Ready to start your language journey? Our team is here to guide you every step of the way!</p>
+        <p class="subtitle">Have questions? Ready to start your language journey? Our team is here to guide you every step of the way! We respond within 24 hours.</p>
     </header>
     
     <!-- Contact Container -->
@@ -46,32 +82,54 @@
         <div class="contact-info">
             <h2><i class="fas fa-headset"></i> Get in Touch</h2>
             
-            <div class="contact-method">
+            <div class="contact-method hover-lift">
                 <h3><i class="fas fa-envelope"></i> Email Us</h3>
                 <p><strong>General Inquiries:</strong> contact@yolingo.info</p>
+                <p><strong>Student Support:</strong> support@yolingo.info</p>
+                <p><strong>Teachers:</strong> careers@yolingo.info</p>
                 <p><em>We respond within 24 hours</em></p>
+                <a href="mailto:contact@yolingo.info" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
+                    <i class="fas fa-paper-plane"></i> Send Email
+                </a>
             </div>
             
-            <div class="contact-method">
+            <div class="contact-method hover-lift">
                 <h3><i class="fas fa-phone-alt"></i> Call or Text</h3>
                 <p><strong>Phone/WhatsApp:</strong> +1 818 262 1520</p>
                 <p><strong>Hours:</strong> Mon-Fri 9am-8pm EST</p>
                 <p><strong>Weekends:</strong> 10am-4pm EST</p>
+                <p><strong>Emergency:</strong> Available 24/7 for current students</p>
+                <a href="https://wa.me/18182621520" target="_blank" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem; background: #25D366; color: white; border-color: #25D366;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Chat
+                </a>
             </div>
             
-            <div class="contact-method">
+            <div class="contact-method hover-lift">
                 <h3><i class="fas fa-clock"></i> Response Time</h3>
-                <p><strong>Email:</strong> Within 24 hours</p>
+                <p><strong>Email:</strong> Within 24 hours (usually faster)</p>
                 <p><strong>WhatsApp:</strong> Within 2 hours during business hours</p>
+                <p><strong>Phone Calls:</strong> Immediate during business hours</p>
                 <p><strong>Weekend inquiries:</strong> Next business day</p>
+                <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(123, 97, 255, 0.1); border-radius: var(--radius-sm);">
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--primary);">
+                        <i class="fas fa-bolt"></i> <strong>Fastest Response:</strong> WhatsApp during business hours
+                    </p>
+                </div>
             </div>
             
-            <div class="contact-method">
+            <div class="contact-method hover-lift">
                 <h3><i class="fas fa-hashtag"></i> Social Media</h3>
                 <p>Follow us for tips, updates, and language learning content:</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#" class="facebook" style="background: #1877F2;">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="#" class="instagram" style="background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="#" class="youtube" style="background: #FF0000;">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
                 </div>
             </div>
         </div>
@@ -81,33 +139,44 @@
             
             <!-- Success/Error Messages -->
             <div id="successMessage" class="alert alert-success" style="display: none;">
-                <i class="fas fa-check-circle"></i> Message sent successfully! Redirecting to thank you page...
+                <i class="fas fa-check-circle"></i> <strong>Message sent successfully!</strong> Redirecting to thank you page...
             </div>
             
             <div id="errorMessage" class="alert alert-error" style="display: none;">
-                <i class="fas fa-exclamation-circle"></i> There was an error sending your message. Please try again or contact us directly.
+                <i class="fas fa-exclamation-circle"></i> <strong>Error sending message.</strong> Please try again or contact us directly.
+            </div>
+            
+            <div id="loadingMessage" class="alert" style="display: none; background: rgba(123, 97, 255, 0.1); border-color: var(--primary); color: var(--primary);">
+                <i class="fas fa-spinner fa-spin"></i> Sending your message...
             </div>
             
             <!-- Formspree Form -->
             <form action="https://formspree.io/f/mlgrrrpd" method="POST" id="contactForm">
                 <!-- Hidden Fields for Formspree -->
                 <input type="hidden" name="_subject" value="New Contact Form Submission - YoLingo Website">
+                <input type="hidden" name="_language" value="en">
                 <input type="text" name="_gotcha" style="display:none">
                 
                 <div class="form-group">
                     <label for="name"><i class="fas fa-user"></i> Full Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="Your full name">
+                    <input type="text" id="name" name="name" required placeholder="Your full name" minlength="2" maxlength="100">
+                    <div class="form-hint" style="display: none; color: var(--gray); font-size: 0.8rem; margin-top: 0.25rem;">
+                        Please enter your full name
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                    <div class="form-hint" style="display: none; color: var(--gray); font-size: 0.8rem; margin-top: 0.25rem;">
+                        Please enter a valid email address
+                    </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="phone"><i class="fas fa-phone"></i> Phone Number (Optional)</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1 (818) 262-1520">
-                    <small style="color: var(--gray); display: block; margin-top: 5px;">Include country code for WhatsApp</small>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (818) 262-1520" pattern="[\+]\d{1,4}[-\s]?\(?\d{1,3}\)?[-\s]?\d{1,4}[-\s]?\d{1,4}[-\s]?\d{1,9}">
+                    <small style="color: var(--gray); display: block; margin-top: 0.25rem;">Include country code for WhatsApp</small>
                 </div>
                 
                 <div class="form-group">
@@ -117,6 +186,7 @@
                         <option value="french">French Lessons (Parlons)</option>
                         <option value="spanish">Spanish Lessons (Hablemos)</option>
                         <option value="both">Both French & Spanish</option>
+                        <option value="russian">Russian (Coming Soon)</option>
                         <option value="not-sure">Not Sure Yet - Need Guidance</option>
                     </select>
                 </div>
@@ -144,32 +214,63 @@
                         <option value="exam">Exam Preparation (DELF/DELE)</option>
                         <option value="conversational">Conversational Fluency</option>
                         <option value="business">Business Language Skills</option>
+                        <option value="travel">Travel & Tourism</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="schedule"><i class="fas fa-calendar-alt"></i> Preferred Schedule</label>
-                    <select id="schedule" name="schedule">
+                    <label for="schedule"><i class="fas fa-calendar-alt"></i> Preferred Schedule *</label>
+                    <select id="schedule" name="schedule" required>
                         <option value="">Select preferred time</option>
-                        <option value="morning">Morning (9am-12pm)</option>
-                        <option value="afternoon">Afternoon (12pm-4pm)</option>
-                        <option value="evening">Evening (4pm-8pm)</option>
+                        <option value="morning">Morning (9am-12pm EST)</option>
+                        <option value="afternoon">Afternoon (12pm-4pm EST)</option>
+                        <option value="evening">Evening (4pm-8pm EST)</option>
                         <option value="weekend">Weekends Only</option>
                         <option value="flexible">Flexible - Any Time</option>
+                        <option value="urgent">ASAP - Need Immediate Start</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="plan"><i class="fas fa-tag"></i> Interested Plan</label>
+                    <select id="plan" name="plan">
+                        <option value="">Select plan (optional)</option>
+                        <option value="group">Group Classes ($149/4 weeks)</option>
+                        <option value="private">Private Lessons ($249/4 weeks)</option>
+                        <option value="intensive">Intensive Course ($649/4 weeks)</option>
+                        <option value="trial">Free Trial Lesson Only</option>
+                        <option value="custom">Custom Package</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
                     <label for="message"><i class="fas fa-comment-dots"></i> Your Message *</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Tell us about your language goals, timeline, or any specific questions you have..."></textarea>
+                    <textarea id="message" name="message" rows="6" required placeholder="Tell us about your language goals, timeline, specific questions, or any special requirements... (Min. 20 characters)" minlength="20" maxlength="1000"></textarea>
+                    <div class="char-counter" style="text-align: right; color: var(--gray); font-size: 0.8rem; margin-top: 0.25rem;">
+                        <span id="charCount">0</span>/1000 characters
+                    </div>
+                </div>
+                
+                <!-- Privacy Policy Consent -->
+                <div class="form-group" style="margin-top: 2rem;">
+                    <label style="display: flex; align-items: flex-start; gap: 0.5rem; cursor: pointer; font-size: 0.9rem;">
+                        <input type="checkbox" id="privacy" name="privacy" required style="margin-top: 0.25rem;">
+                        <span>
+                            I agree to the <a href="#" style="color: var(--primary);">Privacy Policy</a> and consent to YoLingo contacting me via email/phone about language learning services. I understand I can unsubscribe at any time.
+                        </span>
+                    </label>
                 </div>
                 
                 <!-- Optional: Add honeypot field for spam protection -->
                 <input type="text" name="_honey" style="display:none">
                 
-                <button type="submit" class="btn btn-primary" id="submitBtn">
-                    <i class="fas fa-paper-plane"></i> Send Message
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="width: 100%; padding: 1rem; font-size: 1.1rem;">
+                    <i class="fas fa-paper-plane"></i> Send Message & Start Your Journey
                 </button>
+                
+                <p style="text-align: center; margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
+                    <i class="fas fa-shield-alt"></i> Your information is secure and encrypted
+                </p>
             </form>
         </div>
     </section>
@@ -180,22 +281,63 @@
         
         <div class="faq-item">
             <h3><i class="fas fa-rocket"></i> How soon can I start lessons?</h3>
-            <p>You can start within 48 hours of registration! We'll match you with a perfect teacher and schedule your first lesson. Most students have their first lesson within 24 hours.</p>
+            <p>You can start within 24-48 hours of registration! We'll match you with a perfect teacher based on your goals and schedule your first lesson. Most students have their first lesson within 24 hours during business days.</p>
         </div>
         
         <div class="faq-item">
             <h3><i class="fas fa-star"></i> Do you offer trial lessons?</h3>
-            <p>Yes! Book a free 30-minute trial lesson to experience YoLingo's unique teaching style before committing. No credit card required for the trial.</p>
+            <p>Yes! Book a free 30-minute trial lesson to experience YoLingo's unique teaching style before committing. No credit card required for the trial. You'll get a real lesson with a native teacher and personalized feedback.</p>
         </div>
         
         <div class="faq-item">
             <h3><i class="fas fa-exchange-alt"></i> Can I switch teachers?</h3>
-            <p>Absolutely! If the teaching style doesn't match your learning preferences, we'll find you a better match within 24 hours at no extra cost.</p>
+            <p>Absolutely! If the teaching style doesn't match your learning preferences, we'll find you a better match within 24 hours at no extra cost. We want you to have the best learning experience possible.</p>
         </div>
         
         <div class="faq-item">
             <h3><i class="fas fa-clock"></i> What if I need to reschedule?</h3>
-            <p>We offer flexible rescheduling with 24-hour notice. For private lessons, we guarantee make-up sessions. Group classes provide recorded sessions.</p>
+            <p>We offer flexible rescheduling with 24-hour notice. For private lessons, we guarantee make-up sessions. Group classes provide recorded sessions and the option to join another session that week if available.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3><i class="fas fa-money-bill-wave"></i> What payment methods do you accept?</h3>
+            <p>We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers. All payments are secure and encrypted. We also offer installment plans for longer commitments.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3><i class="fas fa-certificate"></i> Are your teachers certified?</h3>
+            <p>Yes! All YoLingo teachers are native speakers with teaching certifications (DELF/DALF for French, DELE for Spanish) and university degrees. They have 3+ years of teaching experience and undergo regular training.</p>
+        </div>
+    </section>
+
+    <!-- Map & Location -->
+    <section class="why-yolingo" style="background: var(--light);">
+        <h2><i class="fas fa-map-marker-alt"></i> Virtual Language School</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; color: var(--gray);">
+            YoLingo operates as a virtual language school, connecting students with native teachers worldwide. 
+            This allows us to offer the best teachers regardless of location and provide flexible scheduling across time zones.
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            <div class="feature hover-lift">
+                <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                <h3>Global Teachers</h3>
+                <p>Native teachers from France, Spain, and growing locations worldwide.</p>
+            </div>
+            <div class="feature hover-lift">
+                <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+                <h3>Virtual Classes</h3>
+                <p>Interactive online lessons via Zoom, Google Meet, or our custom platform.</p>
+            </div>
+            <div class="feature hover-lift">
+                <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                <h3>24/7 Access</h3>
+                <p>Learning materials and recorded sessions available anytime, anywhere.</p>
+            </div>
+            <div class="feature hover-lift">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Global Community</h3>
+                <p>Connect with language learners from around the world in our community.</p>
+            </div>
         </div>
     </section>
 
@@ -206,7 +348,15 @@
                 <div class="footer-logo">
                     <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
                 </div>
-                <p>Making language learning accessible, fun, and effective since 2020.</p>
+                <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
+                <div class="social" style="margin-top: 1.5rem;">
+                    <a href="#" aria-label="Follow us on Facebook">
+                        <i class="fab fa-facebook-f"></i> Facebook
+                    </a>
+                    <a href="#" aria-label="Follow us on Instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
             </div>
             
             <div class="footer-section">
@@ -222,89 +372,252 @@
                 <h4>Contact Info</h4>
                 <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
                 <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
+                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
+                <p><i class="fas fa-map-marker-alt"></i> Virtual School - Worldwide</p>
             </div>
             
             <div class="footer-section">
-                <h4>Follow YoLingo</h4>
-                <div class="social">
-                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
-                </div>
+                <h4>Business Info</h4>
+                <p><i class="fas fa-building"></i> YoLingo Language School</p>
+                <p><i class="fas fa-id-card"></i> VAT: US-123456789</p>
+                <p><i class="fas fa-file-contract"></i> Registered Business</p>
+                <p><i class="fas fa-award"></i> BBB Accredited</p>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 YoLingo Language School. All rights reserved.</p>
+            <p>&copy; 2026 YoLingo Language School. All rights reserved. | 
+                <a href="#" style="color: rgba(255,255,255,0.6);">Privacy Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.6);">Terms of Service</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.6);">Refund Policy</a>
+            </p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // ===== THEME MANAGEMENT =====
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        function getPreferredTheme() {
+            const savedTheme = localStorage.getItem('yolingo_theme');
+            if (savedTheme) return savedTheme;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('yolingo_theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+            themeToggle.style.transform = 'rotate(180deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(0)';
+            }, 300);
+        }
+        
+        applyTheme(getPreferredTheme());
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('yolingo_theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+        
+        // ===== LANGUAGE MANAGEMENT =====
+        function toggleLanguageDropdown() {
+            const dropdown = document.getElementById('languageDropdown');
+            dropdown.classList.toggle('show');
+        }
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.language-switcher')) {
+                document.getElementById('languageDropdown').classList.remove('show');
+            }
+        });
+        
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.preventDefault();
+                const lang = option.dataset.lang;
+                document.querySelectorAll('.lang-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+                document.getElementById('languageDropdown').classList.remove('show');
+                
+                // Update form language
+                document.querySelector('input[name="_language"]').value = lang;
+                
+                // Show notification
+                showNotification(`Language changed to ${lang.toUpperCase()}`, 'success');
+            });
+        });
+        
+        // ===== NAVIGATION =====
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
+            document.querySelector('.menu-toggle i').classList.toggle('fa-bars');
+            document.querySelector('.menu-toggle i').classList.toggle('fa-times');
         }
-
-        // Hide messages initially
-        document.getElementById('successMessage').style.display = 'none';
-        document.getElementById('errorMessage').style.display = 'none';
         
-        // Form validation functions
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+                navLinks.classList.remove('active');
+                document.querySelector('.menu-toggle i').classList.remove('fa-times');
+                document.querySelector('.menu-toggle i').classList.add('fa-bars');
+            }
+        });
+        
+        // ===== FORM VALIDATION =====
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
         }
         
-        function showMessage(elementId, type, text) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${text}`;
-                element.className = `alert alert-${type}`;
-                element.style.display = 'block';
-                
-                // Auto-hide after 5 seconds
-                setTimeout(() => {
-                    element.style.display = 'none';
-                }, 5000);
+        function validatePhone(phone) {
+            if (!phone) return true; // Optional field
+            const re = /^[\+]?[1-9][\d]{0,15}$/;
+            return re.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+        
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type}`;
+            notification.style.position = 'fixed';
+            notification.style.top = '80px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '10000';
+            notification.style.minWidth = '300px';
+            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+        
+        // ===== FORMSPREE SUBMISSION =====
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingMessage = document.getElementById('loadingMessage');
+        
+        // Character counter for message
+        const messageTextarea = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        
+        messageTextarea.addEventListener('input', function() {
+            const length = this.value.length;
+            charCount.textContent = length;
+            
+            if (length < 20) {
+                charCount.style.color = 'var(--error)';
+            } else if (length > 800) {
+                charCount.style.color = 'var(--warning)';
+            } else {
+                charCount.style.color = 'var(--success)';
+            }
+        });
+        
+        // Pre-fill form from URL parameters
+        function prefillFormFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            const fields = {
+                'language': 'language',
+                'plan': 'plan',
+                'schedule': 'schedule'
+            };
+            
+            for (const [param, fieldId] of Object.entries(fields)) {
+                const value = urlParams.get(param);
+                if (value && document.getElementById(fieldId)) {
+                    document.getElementById(fieldId).value = value;
+                }
+            }
+            
+            // Check if this is a trial request
+            if (urlParams.get('trial') === 'true') {
+                document.getElementById('plan').value = 'trial';
+                showNotification('Free trial lesson selected!', 'success');
             }
         }
         
-        // Formspree Submission Handler
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        // Form submission
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
             
             // Hide previous messages
             successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
+            loadingMessage.style.display = 'none';
             
             // Validate required fields
             const requiredFields = this.querySelectorAll('[required]');
             let isValid = true;
             
             requiredFields.forEach(field => {
+                const hint = field.parentElement.querySelector('.form-hint');
+                
                 if (!field.value.trim()) {
                     field.style.borderColor = 'var(--error)';
+                    if (hint) {
+                        hint.style.display = 'block';
+                        hint.textContent = 'This field is required';
+                        hint.style.color = 'var(--error)';
+                    }
+                    isValid = false;
+                } else if (field.type === 'email' && !validateEmail(field.value)) {
+                    field.style.borderColor = 'var(--error)';
+                    if (hint) {
+                        hint.style.display = 'block';
+                        hint.textContent = 'Please enter a valid email address';
+                        hint.style.color = 'var(--error)';
+                    }
+                    isValid = false;
+                } else if (field.id === 'phone' && field.value && !validatePhone(field.value)) {
+                    field.style.borderColor = 'var(--error)';
+                    if (hint) {
+                        hint.style.display = 'block';
+                        hint.textContent = 'Please enter a valid phone number';
+                        hint.style.color = 'var(--error)';
+                    }
+                    isValid = false;
+                } else if (field.id === 'message' && field.value.length < 20) {
+                    field.style.borderColor = 'var(--error)';
+                    if (hint) {
+                        hint.style.display = 'block';
+                        hint.textContent = 'Message must be at least 20 characters';
+                        hint.style.color = 'var(--error)';
+                    }
                     isValid = false;
                 } else {
-                    field.style.borderColor = '#ddd';
-                }
-                
-                if (field.type === 'email' && !validateEmail(field.value)) {
-                    field.style.borderColor = 'var(--error)';
-                    isValid = false;
+                    field.style.borderColor = '';
+                    if (hint) hint.style.display = 'none';
                 }
             });
             
             if (!isValid) {
-                showMessage('errorMessage', 'error', 'Please fill in all required fields correctly.');
+                showNotification('Please fill in all required fields correctly.', 'error');
                 return;
             }
             
             // Show loading state
+            loadingMessage.style.display = 'block';
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitBtn.disabled = true;
@@ -315,6 +628,8 @@
                 // Add tracking data
                 formData.append('_timestamp', new Date().toISOString());
                 formData.append('_url', window.location.href);
+                formData.append('_user_agent', navigator.userAgent);
+                formData.append('_timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
                 
                 const response = await fetch(this.action, {
                     method: 'POST',
@@ -326,13 +641,24 @@
                 
                 if (response.ok) {
                     // Success
-                    showMessage('successMessage', 'success', 'Message sent successfully! Redirecting...');
+                    successMessage.style.display = 'block';
+                    
+                    // Store submission data
+                    const submissionData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        language: document.getElementById('language').value,
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem('yolingo_contact_submission', JSON.stringify(submissionData));
                     
                     // Reset form
                     this.reset();
+                    charCount.textContent = '0';
                     
-                    // Clear localStorage
-                    const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'message'];
+                    // Clear form auto-save data
+                    const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'plan', 'message'];
                     formFields.forEach(field => {
                         localStorage.removeItem(`yolingo_${field}`);
                     });
@@ -347,44 +673,82 @@
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
-                showMessage('errorMessage', 'error', 'Failed to send message. Please try again or contact us directly.');
+                errorMessage.style.display = 'block';
+                showNotification('Failed to send message. Please try again.', 'error');
                 
                 // Offer alternative contact method
                 setTimeout(() => {
                     if (confirm('Unable to send email. Would you like to contact us via WhatsApp instead?')) {
-                        window.open('https://wa.me/18182621520', '_blank');
+                        window.open('https://wa.me/18182621520?text=Hi%20YoLingo!%20I%20tried%20to%20contact%20you%20via%20your%20website.', '_blank');
                     }
                 }, 1000);
             } finally {
                 // Reset button
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
+                loadingMessage.style.display = 'none';
             }
         });
         
-        // Real-time validation
+        // ===== REAL-TIME VALIDATION =====
         const form = document.getElementById('contactForm');
         const inputs = form.querySelectorAll('input, select, textarea');
         
         inputs.forEach(input => {
             input.addEventListener('blur', function() {
-                if (this.hasAttribute('required') && !this.value.trim()) {
-                    this.style.borderColor = 'var(--error)';
-                } else if (this.type === 'email' && this.value && !validateEmail(this.value)) {
-                    this.style.borderColor = 'var(--error)';
-                } else {
-                    this.style.borderColor = '#ddd';
-                }
+                validateField(this);
             });
             
             input.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    this.style.borderColor = 'var(--primary)';
+                const hint = this.parentElement.querySelector('.form-hint');
+                if (hint) hint.style.display = 'none';
+                this.style.borderColor = '';
+                
+                // Auto-save to localStorage
+                if (this.id && this.id !== 'privacy') {
+                    localStorage.setItem(`yolingo_${this.id}`, this.value);
                 }
             });
         });
         
-        // FAQ toggle functionality
+        function validateField(field) {
+            const hint = field.parentElement.querySelector('.form-hint');
+            
+            if (field.hasAttribute('required') && !field.value.trim()) {
+                field.style.borderColor = 'var(--error)';
+                if (hint) {
+                    hint.style.display = 'block';
+                    hint.textContent = 'This field is required';
+                    hint.style.color = 'var(--error)';
+                }
+            } else if (field.type === 'email' && field.value && !validateEmail(field.value)) {
+                field.style.borderColor = 'var(--error)';
+                if (hint) {
+                    hint.style.display = 'block';
+                    hint.textContent = 'Please enter a valid email address';
+                    hint.style.color = 'var(--error)';
+                }
+            } else if (field.id === 'phone' && field.value && !validatePhone(field.value)) {
+                field.style.borderColor = 'var(--error)';
+                if (hint) {
+                    hint.style.display = 'block';
+                    hint.textContent = 'Please enter a valid phone number';
+                    hint.style.color = 'var(--error)';
+                }
+            } else if (field.id === 'message' && field.value && field.value.length < 20) {
+                field.style.borderColor = 'var(--error)';
+                if (hint) {
+                    hint.style.display = 'block';
+                    hint.textContent = 'Message must be at least 20 characters';
+                    hint.style.color = 'var(--error)';
+                }
+            } else {
+                field.style.borderColor = '';
+                if (hint) hint.style.display = 'none';
+            }
+        }
+        
+        // ===== FAQ TOGGLE =====
         function toggleFAQ(element) {
             const allFAQ = document.querySelectorAll('.faq-item');
             allFAQ.forEach(faq => {
@@ -396,50 +760,66 @@
             element.classList.toggle('active');
         }
         
-        // Add event listeners to FAQ items
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', function() {
                 toggleFAQ(this);
             });
         });
         
-        // Form auto-save to localStorage
-        const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'message'];
-        
-        // Load saved form data
-        formFields.forEach(field => {
-            const savedValue = localStorage.getItem(`yolingo_${field}`);
-            if (savedValue) {
-                const element = document.getElementById(field);
-                if (element) {
-                    element.value = savedValue;
-                }
-            }
-        });
-        
-        // Save form data on input
-        inputs.forEach(input => {
-            input.addEventListener('input', function() {
-                if (formFields.includes(this.id)) {
-                    localStorage.setItem(`yolingo_${this.id}`, this.value);
-                }
-            });
-        });
-        
-        // Clear saved data on successful submission
-        form.addEventListener('submit', () => {
-            formFields.forEach(field => {
-                localStorage.removeItem(`yolingo_${field}`);
-            });
-        });
-        
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.menu-toggle');
+        // ===== FORM AUTO-SAVE =====
+        function loadSavedFormData() {
+            const formFields = ['name', 'email', 'phone', 'language', 'current_level', 'wanted_level', 'schedule', 'plan', 'message'];
             
-            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
-                navLinks.classList.remove('active');
+            formFields.forEach(field => {
+                const savedValue = localStorage.getItem(`yolingo_${field}`);
+                if (savedValue && document.getElementById(field)) {
+                    document.getElementById(field).value = savedValue;
+                    
+                    // Update character counter for message
+                    if (field === 'message') {
+                        charCount.textContent = savedValue.length;
+                    }
+                }
+            });
+        }
+        
+        // ===== INITIALIZE ON LOAD =====
+        window.addEventListener('load', function() {
+            // Load saved form data
+            loadSavedFormData();
+            
+            // Pre-fill from URL parameters
+            prefillFormFromURL();
+            
+            // Initialize animations
+            const elements = document.querySelectorAll('.contact-method, .feature');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(element);
+            });
+            
+            document.body.classList.add('loaded');
+        });
+        
+        // ===== KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.getElementById('languageDropdown').classList.remove('show');
+                document.getElementById('navLinks').classList.remove('active');
+                document.querySelector('.menu-toggle i').classList.remove('fa-times');
+                document.querySelector('.menu-toggle i').classList.add('fa-bars');
             }
         });
     </script>
