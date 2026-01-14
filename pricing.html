@@ -260,61 +260,6 @@
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <section class="why-yolingo">
-        <h2>Plan Comparison</h2>
-        <div style="overflow-x: auto; margin-top: 2rem;">
-            <table style="width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius); box-shadow: var(--shadow);">
-                <thead>
-                    <tr style="background: var(--gradient-primary); color: white;">
-                        <th style="padding: 1.5rem; text-align: left;">Feature</th>
-                        <th style="padding: 1.5rem; text-align: center;">Group</th>
-                        <th style="padding: 1.5rem; text-align: center;">Private</th>
-                        <th style="padding: 1.5rem; text-align: center;">Intensive</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="border-bottom: 1px solid var(--gray-light);">
-                        <td style="padding: 1rem 1.5rem;">Weekly Sessions</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">2</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">2</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">5</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--gray-light);">
-                        <td style="padding: 1rem 1.5rem;">Session Length</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">60 min</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">60 min</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">90 min</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--gray-light);">
-                        <td style="padding: 1rem 1.5rem;">Class Size</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">4 max</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">1:1</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;">3 max</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--gray-light);">
-                        <td style="padding: 1rem 1.5rem;">Personalized Plan</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-check" style="color: var(--success);"></i></td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid var(--gray-light);">
-                        <td style="padding: 1rem 1.5rem;">Priority Support</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-times" style="color: var(--gray);"></i></td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-check" style="color: var(--success);"></i></td>
-                        <td style="padding: 1rem 1.5rem; text-align: center;"><i class="fas fa-check" style="color: var(--success);"></i></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 1rem 1.5rem;">Monthly Price</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center; font-weight: bold; color: var(--primary);">$149</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center; font-weight: bold; color: var(--primary);">$249</td>
-                        <td style="padding: 1rem 1.5rem; text-align: center; font-weight: bold; color: var(--primary);">$649</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -378,16 +323,27 @@
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('yolingo_theme', theme);
             themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            // Update meta theme-color for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#7b61ff');
+            }
         }
         
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
-            themeToggle.style.transform = 'rotate(180deg)';
+            
+            // Add animation
+            themeToggle.style.transform = 'rotate(180deg) scale(1.1)';
             setTimeout(() => {
-                themeToggle.style.transform = 'rotate(0)';
+                themeToggle.style.transform = 'rotate(0) scale(1)';
             }, 300);
+            
+            // Show notification
+            showNotification(`${newTheme === 'dark' ? 'Dark' : 'Light'} mode activated`, 'info');
         }
         
         applyTheme(getPreferredTheme());
@@ -402,14 +358,76 @@
         // ===== LANGUAGE MANAGEMENT =====
         function toggleLanguageDropdown() {
             const dropdown = document.getElementById('languageDropdown');
+            const isShowing = dropdown.classList.contains('show');
+            
+            // Close all other dropdowns
+            document.querySelectorAll('.lang-dropdown.show').forEach(d => {
+                if (d !== dropdown) d.classList.remove('show');
+            });
+            
+            // Toggle current dropdown
             dropdown.classList.toggle('show');
+            
+            // Update chevron icon
+            const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
+            if (chevron) {
+                chevron.style.transform = isShowing ? 'rotate(0deg)' : 'rotate(180deg)';
+            }
         }
         
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.language-switcher')) {
                 document.getElementById('languageDropdown').classList.remove('show');
+                const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
+                if (chevron) {
+                    chevron.style.transform = 'rotate(0deg)';
+                }
             }
         });
+        
+        // Language translations dictionary
+        const translations = {
+            en: {
+                nav: {
+                    home: "Home",
+                    parlons: "Parlons (French)",
+                    hablemos: "Hablemos (Spanish)",
+                    pricing: "Pricing",
+                    contact: "Contact"
+                },
+                header: {
+                    title: "YoLingo Pricing Plans",
+                    subtitle: "Choose the perfect plan for your language learning journey. All prices are per 4 weeks and include full access to YoLingo learning materials and resources."
+                },
+                // Add more translations as needed
+            },
+            fr: {
+                nav: {
+                    home: "Accueil",
+                    parlons: "Parlons (Français)",
+                    hablemos: "Hablemos (Espagnol)",
+                    pricing: "Tarifs",
+                    contact: "Contact"
+                },
+                header: {
+                    title: "Plans Tarifaires YoLingo",
+                    subtitle: "Choisissez le plan parfait pour votre apprentissage linguistique. Tous les prix sont pour 4 semaines et incluent un accès complet aux ressources d'apprentissage YoLingo."
+                }
+            },
+            ru: {
+                nav: {
+                    home: "Главная",
+                    parlons: "Parlons (Французский)",
+                    hablemos: "Hablemos (Испанский)",
+                    pricing: "Цены",
+                    contact: "Контакты"
+                },
+                header: {
+                    title: "Тарифные планы YoLingo",
+                    subtitle: "Выберите идеальный план для вашего языкового обучения. Все цены указаны за 4 недели и включают полный доступ к учебным материалам YoLingo."
+                }
+            }
+        };
         
         document.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', (e) => {
@@ -421,21 +439,55 @@
                 option.classList.add('active');
                 document.getElementById('languageDropdown').classList.remove('show');
                 
-                // Show notification
-                const notification = document.createElement('div');
-                notification.className = 'alert alert-success';
-                notification.style.position = 'fixed';
-                notification.style.top = '80px';
-                notification.style.right = '20px';
-                notification.style.zIndex = '10000';
-                notification.innerHTML = `<i class="fas fa-language"></i> Language changed to ${lang.toUpperCase()}`;
-                document.body.appendChild(notification);
+                // Apply translations
+                applyTranslations(lang);
                 
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
+                // Show notification
+                showNotification(`Language changed to ${getLanguageName(lang)}`, 'success');
+                
+                // Store preference
+                localStorage.setItem('yolingo_language', lang);
             });
         });
+        
+        function getLanguageName(code) {
+            const names = {
+                'en': 'English',
+                'fr': 'Français',
+                'ru': 'Русский'
+            };
+            return names[code] || code.toUpperCase();
+        }
+        
+        function applyTranslations(lang) {
+            const translation = translations[lang] || translations.en;
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            if (navLinks[0]) navLinks[0].textContent = translation.nav.home;
+            if (navLinks[1]) navLinks[1].textContent = translation.nav.parlons;
+            if (navLinks[2]) navLinks[2].textContent = translation.nav.hablemos;
+            if (navLinks[3]) navLinks[3].textContent = translation.nav.pricing;
+            if (navLinks[4]) navLinks[4].textContent = translation.nav.contact;
+            
+            // Update header
+            const header = document.querySelector('.page-header');
+            if (header) {
+                const h1 = header.querySelector('h1');
+                const subtitle = header.querySelector('.subtitle');
+                if (h1) h1.textContent = translation.header.title;
+                if (subtitle) subtitle.textContent = translation.header.subtitle;
+            }
+            
+            // Update page title
+            document.title = `Pricing Plans - YoLingo Language School`;
+            
+            // Update language in contact form if exists
+            const languageInput = document.querySelector('input[name="_language"]');
+            if (languageInput) {
+                languageInput.value = lang;
+            }
+        }
         
         // ===== NAVIGATION =====
         function toggleMenu() {
@@ -455,6 +507,53 @@
                 document.querySelector('.menu-toggle i').classList.add('fa-bars');
             }
         });
+        
+        // ===== NOTIFICATION SYSTEM =====
+        function showNotification(message, type) {
+            // Remove any existing notifications
+            document.querySelectorAll('.custom-notification').forEach(n => n.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `custom-notification alert-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                z-index: 10000;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-sm);
+                box-shadow: var(--shadow-hover);
+                background: ${type === 'success' ? 'var(--success)' : 
+                            type === 'error' ? 'var(--error)' : 
+                            type === 'warning' ? 'var(--warning)' : 'var(--info)'};
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                animation: slideIn 0.3s ease-out;
+                max-width: 350px;
+                border-left: 4px solid ${type === 'success' ? 'rgba(16, 185, 129, 0.7)' : 
+                                    type === 'error' ? 'rgba(239, 68, 68, 0.7)' : 
+                                    type === 'warning' ? 'rgba(245, 158, 11, 0.7)' : 'rgba(59, 130, 246, 0.7)'};
+            `;
+            
+            const icon = type === 'success' ? 'fa-check-circle' :
+                        type === 'error' ? 'fa-exclamation-circle' :
+                        type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+            
+            notification.innerHTML = `
+                <i class="fas ${icon}" style="font-size: 1.2rem;"></i>
+                <span style="flex: 1;">${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
         
         // ===== FAQ TOGGLE =====
         function toggleFAQ(element) {
@@ -535,6 +634,32 @@
                     }
                 });
             }
+            
+            // Load saved language preference
+            const savedLang = localStorage.getItem('yolingo_language') || 'en';
+            const savedOption = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
+            if (savedOption) {
+                savedOption.click();
+            }
+            
+            // Load logo
+            const logoImage = document.querySelector('.logo-image');
+            if (logoImage) {
+                const img = new Image();
+                img.onload = function() {
+                    logoImage.innerHTML = `<img src="logo.jpg" alt="YoLingo" loading="lazy">`;
+                    logoImage.classList.add('loaded');
+                };
+                img.onerror = function() {
+                    logoImage.innerHTML = `
+                        <div style="background: var(--gradient-primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; box-shadow: var(--shadow);">
+                            YL
+                        </div>
+                    `;
+                    logoImage.classList.add('loaded');
+                };
+                img.src = 'logo.jpg';
+            }
         });
         
         // ===== ANIMATIONS =====
@@ -579,6 +704,18 @@
                 50% { transform: scale(1.05); }
                 100% { transform: scale(1); }
             }
+            
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
             .faq-item p {
                 max-height: 0;
                 overflow: hidden;
@@ -587,126 +724,12 @@
             .faq-item.active p {
                 max-height: 500px;
             }
+            
+            .custom-notification {
+                transition: all 0.3s ease;
+            }
         `;
         document.head.appendChild(style);
-
-        // ===== FIXED LANGUAGE SWITCHER =====
-function toggleLanguageDropdown() {
-    const dropdown = document.getElementById('languageDropdown');
-    const isShowing = dropdown.classList.contains('show');
-    
-    // Close all other dropdowns
-    document.querySelectorAll('.lang-dropdown.show').forEach(d => {
-        if (d !== dropdown) d.classList.remove('show');
-    });
-    
-    // Toggle current dropdown
-    dropdown.classList.toggle('show');
-    
-    // Update chevron icon
-    const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-    if (chevron) {
-        chevron.style.transform = isShowing ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (!e.target.closest('.language-switcher')) {
-        document.getElementById('languageDropdown').classList.remove('show');
-        const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-        if (chevron) {
-            chevron.style.transform = 'rotate(0deg)';
-        }
-    }
-});
-
-// Language selection
-document.querySelectorAll('.lang-option').forEach(option => {
-    option.addEventListener('click', (e) => {
-        e.preventDefault();
-        const lang = option.dataset.lang;
-        
-        // Update active state
-        document.querySelectorAll('.lang-option').forEach(opt => {
-            opt.classList.remove('active');
-        });
-        option.classList.add('active');
-        
-        // Update button text
-        const langSpan = document.querySelector('.lang-toggle span');
-        if (langSpan) {
-            langSpan.textContent = lang.toUpperCase();
-        }
-        
-        // Close dropdown
-        document.getElementById('languageDropdown').classList.remove('show');
-        const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-        if (chevron) {
-            chevron.style.transform = 'rotate(0deg)';
-        }
-        
-        // Show notification
-        const notification = document.createElement('div');
-        notification.className = 'alert alert-success';
-        notification.style.position = 'fixed';
-        notification.style.top = '80px';
-        notification.style.right = '20px';
-        notification.style.zIndex = '10000';
-        notification.style.padding = '1rem 1.5rem';
-        notification.style.borderRadius = 'var(--radius-sm)';
-        notification.style.boxShadow = 'var(--shadow-hover)';
-        notification.innerHTML = `<i class="fas fa-language"></i> Language changed to ${lang.toUpperCase()}`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => notification.remove(), 300);
-        }, 3000);
-        
-        // Store preference
-        localStorage.setItem('yolingo_language', lang);
-    });
-});
-
-// Load saved language preference on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const savedLang = localStorage.getItem('yolingo_language') || 'en';
-    const savedOption = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
-    if (savedOption) {
-        savedOption.click();
-    }
-});
-
-// ===== FIX LOGO ON OTHER PAGES =====
-function loadLogoForPage() {
-    const logoImage = document.querySelector('.logo-image');
-    if (logoImage && !logoImage.innerHTML.includes('img')) {
-        const img = new Image();
-        
-        img.onload = function() {
-            logoImage.innerHTML = `<img src="logo.jpg" alt="YoLingo" loading="lazy">`;
-            logoImage.classList.add('loaded');
-        };
-        
-        img.onerror = function() {
-            if (!logoImage.innerHTML.includes('div')) {
-                logoImage.innerHTML = `
-                    <div style="background: var(--gradient-primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; box-shadow: var(--shadow);">
-                        YL
-                    </div>
-                `;
-                logoImage.classList.add('loaded');
-            }
-        };
-        
-        img.src = 'logo.jpg';
-    }
-}
-
-// Load logo on page load
-document.addEventListener('DOMContentLoaded', loadLogoForPage);
     </script>
 </body>
 </html>
