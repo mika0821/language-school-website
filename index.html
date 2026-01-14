@@ -302,7 +302,7 @@
         </div>
     </footer>
 
-    <script>
+        <script>
         // ===== FIX LOGO ISSUE =====
         function loadLogo() {
             const logoImage = document.getElementById('logoImage');
@@ -347,6 +347,12 @@
             
             // Update icon
             themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            
+            // Update meta theme-color for mobile browsers
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#7b61ff');
+            }
         }
         
         // Toggle theme
@@ -356,10 +362,13 @@
             applyTheme(newTheme);
             
             // Add animation
-            themeToggle.style.transform = 'rotate(180deg)';
+            themeToggle.style.transform = 'rotate(180deg) scale(1.1)';
             setTimeout(() => {
-                themeToggle.style.transform = 'rotate(0)';
+                themeToggle.style.transform = 'rotate(0) scale(1)';
             }, 300);
+            
+            // Show notification
+            showNotification(`${newTheme === 'dark' ? 'Dark' : 'Light'} mode activated`, 'info');
         }
         
         // Initialize theme
@@ -373,7 +382,7 @@
             }
         });
         
-        // ===== FIX LANGUAGE SWITCHER =====
+        // ===== LANGUAGE MANAGEMENT =====
         function toggleLanguageDropdown() {
             const dropdown = document.getElementById('languageDropdown');
             const isShowing = dropdown.classList.contains('show');
@@ -404,6 +413,56 @@
             }
         });
         
+        // Language translations dictionary
+        const translations = {
+            en: {
+                nav: {
+                    home: "Home",
+                    parlons: "Parlons (French)",
+                    hablemos: "Hablemos (Spanish)",
+                    pricing: "Pricing",
+                    contact: "Contact"
+                },
+                hero: {
+                    title: "Learn Languages with <span class='highlight'>YoLingo</span>",
+                    subtitle: "Where culture meets conversation. Master French or Spanish with native speakers in interactive, personalized lessons."
+                },
+                why: "Why Choose <span class='highlight'>YoLingo</span>?",
+                stats: "Ready to Start Your Language Journey?",
+                // Add more translations as needed
+            },
+            fr: {
+                nav: {
+                    home: "Accueil",
+                    parlons: "Parlons (Français)",
+                    hablemos: "Hablemos (Espagnol)",
+                    pricing: "Tarifs",
+                    contact: "Contact"
+                },
+                hero: {
+                    title: "Apprenez les langues avec <span class='highlight'>YoLingo</span>",
+                    subtitle: "Où la culture rencontre la conversation. Maîtrisez le français ou l'espagnol avec des locuteurs natifs dans des cours interactifs et personnalisés."
+                },
+                why: "Pourquoi choisir <span class='highlight'>YoLingo</span> ?",
+                stats: "Prêt à commencer votre apprentissage linguistique ?",
+            },
+            ru: {
+                nav: {
+                    home: "Главная",
+                    parlons: "Parlons (Французский)",
+                    hablemos: "Hablemos (Испанский)",
+                    pricing: "Цены",
+                    contact: "Контакты"
+                },
+                hero: {
+                    title: "Изучайте языки с <span class='highlight'>YoLingo</span>",
+                    subtitle: "Место, где культура встречается с общением. Освойте французский или испанский с носителями языка на интерактивных персонализированных уроках."
+                },
+                why: "Почему стоит выбрать <span class='highlight'>YoLingo</span>?",
+                stats: "Готовы начать своё языковое путешествие?",
+            }
+        };
+        
         // Language selection
         document.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', (e) => {
@@ -429,13 +488,61 @@
                     chevron.style.transform = 'rotate(0deg)';
                 }
                 
+                // Apply translations
+                applyTranslations(lang);
+                
                 // Show notification
-                showNotification(`Language changed to ${lang.toUpperCase()}`, 'success');
+                showNotification(`Language changed to ${getLanguageName(lang)}`, 'success');
                 
                 // Store preference
                 localStorage.setItem('yolingo_language', lang);
             });
         });
+        
+        function getLanguageName(code) {
+            const names = {
+                'en': 'English',
+                'fr': 'Français',
+                'ru': 'Русский'
+            };
+            return names[code] || code.toUpperCase();
+        }
+        
+        function applyTranslations(lang) {
+            const translation = translations[lang] || translations.en;
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            if (navLinks[0]) navLinks[0].textContent = translation.nav.home;
+            if (navLinks[1]) navLinks[1].textContent = translation.nav.parlons;
+            if (navLinks[2]) navLinks[2].textContent = translation.nav.hablemos;
+            if (navLinks[3]) navLinks[3].textContent = translation.nav.pricing;
+            if (navLinks[4]) navLinks[4].textContent = translation.nav.contact;
+            
+            // Update hero section
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                const h1 = hero.querySelector('h1');
+                const subtitle = hero.querySelector('.subtitle');
+                if (h1) h1.innerHTML = translation.hero.title;
+                if (subtitle) subtitle.textContent = translation.hero.subtitle;
+            }
+            
+            // Update why yolingo section
+            const whySection = document.querySelector('.why-yolingo h2');
+            if (whySection) {
+                whySection.innerHTML = translation.why;
+            }
+            
+            // Update CTA section
+            const ctaSection = document.querySelector('.cta h2');
+            if (ctaSection) {
+                ctaSection.textContent = translation.stats;
+            }
+            
+            // Update page title
+            document.title = `YoLingo | ${getLanguageName(lang)} Lessons with Native Teachers`;
+        }
         
         // ===== NAVIGATION =====
         function toggleMenu() {
@@ -471,17 +578,42 @@
         
         // ===== NOTIFICATION SYSTEM =====
         function showNotification(message, type) {
+            // Remove any existing notifications
+            document.querySelectorAll('.custom-notification').forEach(n => n.remove());
+            
             const notification = document.createElement('div');
-            notification.className = `alert alert-${type}`;
-            notification.style.position = 'fixed';
-            notification.style.top = '80px';
-            notification.style.right = '20px';
-            notification.style.zIndex = '10000';
-            notification.style.minWidth = '300px';
-            notification.style.padding = '1rem 1.5rem';
-            notification.style.borderRadius = 'var(--radius-sm)';
-            notification.style.boxShadow = 'var(--shadow-hover)';
-            notification.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+            notification.className = `custom-notification alert-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 90px;
+                right: 20px;
+                z-index: 10000;
+                padding: 1rem 1.5rem;
+                border-radius: var(--radius-sm);
+                box-shadow: var(--shadow-hover);
+                background: ${type === 'success' ? 'var(--success)' : 
+                            type === 'error' ? 'var(--error)' : 
+                            type === 'warning' ? 'var(--warning)' : 'var(--info)'};
+                color: white;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                animation: slideIn 0.3s ease-out;
+                max-width: 350px;
+                border-left: 4px solid ${type === 'success' ? 'rgba(16, 185, 129, 0.7)' : 
+                                    type === 'error' ? 'rgba(239, 68, 68, 0.7)' : 
+                                    type === 'warning' ? 'rgba(245, 158, 11, 0.7)' : 'rgba(59, 130, 246, 0.7)'};
+            `;
+            
+            const icon = type === 'success' ? 'fa-check-circle' :
+                        type === 'error' ? 'fa-exclamation-circle' :
+                        type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
+            
+            notification.innerHTML = `
+                <i class="fas ${icon}" style="font-size: 1.2rem;"></i>
+                <span style="flex: 1;">${message}</span>
+            `;
+            
             document.body.appendChild(notification);
             
             setTimeout(() => {
@@ -588,22 +720,6 @@
             });
         });
         
-        // Add CSS for ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            .btn {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
-        
         // ===== INITIALIZE ON LOAD =====
         window.addEventListener('load', function() {
             // Load logo
@@ -665,6 +781,35 @@
                 }
             }
         });
+        
+        // Add CSS for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            @keyframes slideIn {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+            .custom-notification {
+                transition: all 0.3s ease;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
