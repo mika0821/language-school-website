@@ -37,38 +37,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* Additional performance optimizations */
-        .language-card, .feature, .plan, .contact-method {
-            will-change: transform;
-        }
-        
-        /* Image optimization */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-        
-        /* Touch optimization */
-        .btn, .nav-links a, .start-link {
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        /* Smooth transitions */
-        * {
-            scroll-behavior: smooth;
-        }
-        
-        /* Better focus for accessibility */
-        :focus-visible {
-            outline: 3px solid var(--primary);
-            outline-offset: 3px;
-            border-radius: var(--radius-sm);
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -285,8 +253,8 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2026 YoLingo Language School. Designed for the digital generation. | 
-                    <a href="#" style="color: rgba(255,255,255,0.6);">Privacy</a> • 
-                    <a href="#" style="color: rgba(255,255,255,0.6);">Terms</a>
+                    <a href="#">Privacy</a> • 
+                    <a href="#">Terms</a>
                 </p>
             </div>
         </div>
@@ -350,28 +318,8 @@
             }
         });
         
-        // ===== SMOOTH SCROLLING =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                
-                if (targetId.startsWith('#')) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
         // ===== CARD HOVER EFFECTS =====
-        const cards = document.querySelectorAll('.language-card, .feature, .plan');
+        const cards = document.querySelectorAll('.language-card, .feature');
         
         cards.forEach(card => {
             card.addEventListener('mouseenter', () => {
@@ -392,91 +340,8 @@
             });
         });
         
-        // ===== RIPPLE BUTTON EFFECT =====
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Create ripple
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.3);
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    width: ${size}px;
-                    height: ${size}px;
-                    top: ${y}px;
-                    left: ${x}px;
-                    pointer-events: none;
-                `;
-                
-                this.appendChild(ripple);
-                
-                // Remove ripple after animation
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-        
-        // ===== LOADING STATES =====
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                const submitBtn = this.querySelector('button[type="submit"]');
-                if (submitBtn) {
-                    submitBtn.classList.add('loading');
-                    const originalText = submitBtn.innerHTML;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    
-                    // Reset after 5 seconds (fallback)
-                    setTimeout(() => {
-                        submitBtn.classList.remove('loading');
-                        submitBtn.innerHTML = originalText;
-                    }, 5000);
-                }
-            });
-        });
-        
-        // ===== ANIMATIONS ON SCROLL =====
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
         // ===== INITIALIZATION =====
         window.addEventListener('DOMContentLoaded', () => {
-            // Initialize scroll animations
-            document.querySelectorAll('.feature, .language-card, .plan').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(30px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-            
-            // Touch device detection
-            if ('ontouchstart' in window || navigator.maxTouchPoints) {
-                document.documentElement.classList.add('touch-device');
-                
-                // Increase tap targets for mobile
-                document.querySelectorAll('.btn, .nav-links a, .start-link').forEach(el => {
-                    el.style.minHeight = '48px';
-                    el.style.minWidth = '48px';
-                });
-            }
-            
             // Event listeners
             menuToggle.addEventListener('click', toggleMobileMenu);
             
@@ -487,63 +352,29 @@
                 }
             });
             
-            // Add CSS for animations
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(4);
-                        opacity: 0;
+            // Animate features on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
                     }
-                }
-                
-                @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                    }
-                    to {
-                        opacity: 1;
-                    }
-                }
-                
-                /* Loading animation */
-                .fa-spinner {
-                    animation: spin 1s linear infinite;
-                }
-                
-                @keyframes spin {
-                    to { transform: rotate(360deg); }
-                }
-                
-                /* Mobile menu active state */
-                .menu-toggle.active {
-                    background: var(--primary-dark);
-                }
-                
-                /* Better focus for touch */
-                .touch-device .btn:active,
-                .touch-device .nav-links a:active,
-                .touch-device .start-link:active {
-                    transform: scale(0.95);
-                    transition: transform 0.1s ease;
-                }
-                
-                /* Smooth page load */
-                body {
-                    animation: fadeIn 0.5s ease-out;
-                }
-            `;
-            document.head.appendChild(style);
-        });
-        
-        // ===== PERFORMANCE OPTIMIZATION =====
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            document.body.classList.add('resizing');
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                document.body.classList.remove('resizing');
-            }, 250);
+                });
+            }, observerOptions);
+            
+            // Initialize scroll animations
+            document.querySelectorAll('.feature, .language-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
         });
     </script>
 </body>
