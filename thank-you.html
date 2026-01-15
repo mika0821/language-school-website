@@ -1,32 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - YoLingo Language School</title>
 
-    <!-- ===== FAVICON ===== -->
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="theme-color" content="#7b61ff">
-    <!-- =================== -->
+    <!-- ===== FAVICON & SEO META TAGS ===== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0f0f23">
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Thank you for contacting YoLingo. Your message has been received and we'll contact you within 24 hours to start your language journey.">
+    <meta name="keywords" content="thank you yolingo, message received, language learning consultation, french spanish lessons">
+    <meta name="author" content="YoLingo Language School">
+    
+    <!-- ===== STYLES & FONTS ===== -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .thank-you-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
+        .thank-you-header {
+            padding: 12rem 0 6rem;
             text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9) 0%, rgba(5, 150, 105, 0.9) 100%);
+        }
+        
+        .thank-you-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+        
+        .thank-you-header h1 {
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .thank-you-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         
         .success-animation {
             font-size: 100px;
-            color: var(--primary);
+            color: var(--success);
             margin: 2rem 0;
             animation: bounce 1s infinite alternate, pulse 2s infinite;
         }
@@ -42,12 +83,11 @@
         }
         
         .thank-you-message {
-            background: var(--gradient-primary);
-            color: white;
+            background: var(--bg-secondary);
             padding: 3rem;
             border-radius: var(--radius-lg);
             margin: 3rem 0;
-            box-shadow: var(--shadow-glow);
+            box-shadow: var(--shadow-card);
             position: relative;
             overflow: hidden;
         }
@@ -63,8 +103,8 @@
             z-index: 1;
         }
         
-        .thank-you-message h1 {
-            color: white;
+        .thank-you-message h2 {
+            color: var(--text-primary);
             margin-bottom: 1.5rem;
             position: relative;
             z-index: 2;
@@ -76,20 +116,17 @@
             font-size: 1.1rem;
             line-height: 1.6;
             margin-bottom: 1rem;
+            color: var(--text-secondary);
         }
         
         .next-steps {
-            background: white;
+            background: var(--bg-secondary);
             padding: 3rem;
             border-radius: var(--radius-lg);
             margin: 3rem 0;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-card);
             position: relative;
             overflow: hidden;
-        }
-        
-        [data-theme="dark"] .next-steps {
-            background: var(--dark-bg-secondary);
         }
         
         .next-steps::before {
@@ -108,7 +145,6 @@
             font-size: 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.75rem;
         }
         
@@ -151,21 +187,13 @@
         
         .step-content h4 {
             margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-        
-        [data-theme="dark"] .step-content h4 {
-            color: var(--dark-text);
+            color: var(--text-primary);
         }
         
         .step-content p {
-            color: var(--gray);
+            color: var(--text-secondary);
             margin: 0;
             line-height: 1.5;
-        }
-        
-        [data-theme="dark"] .step-content p {
-            color: var(--dark-text-secondary);
         }
         
         .countdown-container {
@@ -174,6 +202,7 @@
             background: rgba(123, 97, 255, 0.1);
             border-radius: var(--radius);
             border: 2px dashed var(--primary);
+            text-align: center;
         }
         
         .countdown {
@@ -185,12 +214,8 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--radius-sm);
-        }
-        
-        [data-theme="dark"] .countdown {
             background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
         }
         
         .countdown-timer {
@@ -228,9 +253,11 @@
         
         .contact-info-card {
             margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gray-light);
-            color: var(--gray);
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-card);
         }
         
         .contact-info-card p {
@@ -239,6 +266,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
+            color: var(--text-secondary);
         }
         
         .contact-info-card strong {
@@ -267,7 +295,7 @@
         /* Progress bar animation */
         .progress-bar {
             height: 4px;
-            background: var(--gray-light);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 2px;
             margin: 2rem auto;
             max-width: 500px;
@@ -285,53 +313,39 @@
             from { width: 0%; }
             to { width: 100%; }
         }
+        
+        .download-resources {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(123, 97, 255, 0.05);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        
+        .download-resources h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
-    <!-- Skip to content link for accessibility -->
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
-    
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <div class="logo" onclick="window.location.href='index.html'">
-            <img src="logo.jpg" alt="YoLingo" class="logo-image" loading="lazy">
+            <div class="logo-image">
+                <span>YL</span>
+            </div>
             <div class="logo-text-container">
-                <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+                <span>Yo</span><span>Lingo</span>
             </div>
         </div>
         
-        <div class="nav-controls">
-            <!-- Language Switcher -->
-            <div class="language-switcher">
-                <button class="lang-toggle" onclick="toggleLanguageDropdown()">
-                    <i class="fas fa-globe"></i>
-                    <span>EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="lang-dropdown" id="languageDropdown">
-                    <a href="#" class="lang-option active" data-lang="en">
-                        <i class="fas fa-language"></i> English
-                    </a>
-                    <a href="#" class="lang-option" data-lang="fr">
-                        <i class="fas fa-language"></i> Français
-                    </a>
-                    <a href="#" class="lang-option" data-lang="ru">
-                        <i class="fas fa-language"></i> Русский
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Dark Mode Toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            
-            <!-- Mobile menu button -->
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+        <!-- Mobile Menu Button -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
         
+        <!-- Navigation Links -->
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="parlons.html">Parlons (French)</a>
@@ -342,711 +356,336 @@
     </nav>
     
     <!-- Thank You Content -->
-    <div class="thank-you-container" id="main-content">
-        <div class="success-animation">
-            <i class="fas fa-check-circle"></i>
-        </div>
+    <main>
+        <header class="thank-you-header">
+            <div class="container">
+                <div class="success-animation">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1>Thank You for Contacting YoLingo!</h1>
+                <p class="subtitle">Your message has been sent successfully! We'll review your inquiry and contact you within 24 hours (usually much faster!).</p>
+            </div>
+        </header>
         
-        <div class="thank-you-message">
-            <h1>Thank You for Contacting YoLingo!</h1>
-            <p style="font-size: 1.3rem; margin: 1rem 0; font-weight: 600;">
-                🎉 Your message has been sent successfully!
-            </p>
-            <p style="font-size: 1.1rem; opacity: 0.95; max-width: 600px; margin: 0 auto;">
-                We'll review your inquiry and contact you within <strong style="color: white;">24 hours</strong> (usually much faster!).
-            </p>
-            <p style="margin-top: 1.5rem; font-size: 1rem;">
-                <i class="fas fa-heart" style="color: #FF6B8B;"></i>
-                Our language experts are excited to help you start your journey!
-            </p>
-            
-            <!-- Progress bar -->
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            
-            <div style="display: inline-flex; align-items: center; gap: 1rem; background: rgba(255, 255, 255, 0.1); padding: 1rem 2rem; border-radius: var(--radius); margin-top: 1.5rem;">
-                <i class="fas fa-bolt" style="font-size: 1.5rem;"></i>
-                <div style="text-align: left;">
-                    <p style="margin: 0; font-weight: 600;">Next Steps Already Started</p>
-                    <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">We're matching you with the perfect teacher</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="next-steps">
-            <h3><i class="fas fa-road"></i> 📋 What Happens Next?</h3>
-            
-            <div class="steps-list">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h4>Confirmation Email (Within 5 minutes)</h4>
-                        <p>You'll receive an automated confirmation email with your inquiry details. Check your spam folder if you don't see it.</p>
-                    </div>
+        <div class="container">
+            <div class="thank-you-message">
+                <h2>🎉 Message Received Successfully!</h2>
+                <p style="font-size: 1.2rem; margin: 1rem 0; color: var(--success);">
+                    <i class="fas fa-check-circle"></i> Your inquiry has been submitted successfully!
+                </p>
+                <p>
+                    We'll review your information and our language experts will contact you within <strong style="color: var(--primary);">24 hours</strong> (usually much faster during business hours).
+                </p>
+                <p>
+                    <i class="fas fa-heart" style="color: #ec4899;"></i>
+                    Our team is excited to help you start your language learning journey!
+                </p>
+                
+                <!-- Progress bar -->
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
                 </div>
                 
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h4>Personalized Response (Within 24 hours)</h4>
-                        <p>Our language advisor will review your goals and send a personalized response with scheduling options and teacher recommendations.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h4>Free 15-Minute Consultation</h4>
-                        <p>Schedule a free chat with our language advisor to discuss your goals, answer questions, and create your learning plan.</p>
-                    </div>
-                </div>
-                
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h4>Teacher Matching & First Lesson</h4>
-                        <p>We'll match you with the perfect teacher for your goals and schedule your first lesson at your convenience.</p>
+                <div style="display: inline-flex; align-items: center; gap: 1rem; background: rgba(168, 85, 247, 0.1); padding: 1rem 2rem; border-radius: var(--radius); margin-top: 1.5rem;">
+                    <i class="fas fa-bolt" style="font-size: 1.5rem; color: var(--primary);"></i>
+                    <div style="text-align: left;">
+                        <p style="margin: 0; font-weight: 600; color: var(--text-primary);">Next Steps Already Started</p>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">We're matching you with the perfect teacher</p>
                     </div>
                 </div>
             </div>
             
-            <div class="countdown-container">
-                <div class="countdown" id="countdown">
-                    <i class="fas fa-hourglass-half"></i>
-                    Redirecting to homepage in <span class="countdown-timer" id="timer">10</span> seconds...
+            <div class="next-steps">
+                <h3><i class="fas fa-road"></i> 📋 What Happens Next?</h3>
+                
+                <div class="steps-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Confirmation Email (Within 5 minutes)</h4>
+                            <p>You'll receive an automated confirmation email with your inquiry details. Check your spam folder if you don't see it.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Personalized Response (Within 24 hours)</h4>
+                            <p>Our language advisor will review your goals and send a personalized response with scheduling options and teacher recommendations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Free 30-Minute Consultation</h4>
+                            <p>Schedule a free chat with our language advisor to discuss your goals, answer questions, and create your learning plan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Teacher Matching & First Lesson</h4>
+                            <p>We'll match you with the perfect teacher for your goals and schedule your first lesson at your convenience.</p>
+                        </div>
+                    </div>
                 </div>
-                <p style="margin-top: 1rem; color: var(--gray); font-size: 0.9rem;">
-                    <i class="fas fa-hand-pointer"></i> Hover over this box to pause the countdown
+                
+                <div class="countdown-container">
+                    <div class="countdown" id="countdown">
+                        <i class="fas fa-hourglass-half"></i>
+                        Redirecting to homepage in <span class="countdown-timer" id="timer">15</span> seconds...
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <i class="fas fa-hand-pointer"></i> Click here to <a href="index.html" style="color: var(--primary);">go to homepage now</a>
+                    </p>
+                </div>
+            </div>
+            
+            <div style="margin: 3rem 0; text-align: center;">
+                <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">
+                    <i class="fas fa-compass"></i> In the meantime, explore our resources:
+                </h3>
+                <div class="resource-buttons">
+                    <a href="parlons.html" class="resource-btn" style="background: var(--gradient-french); color: white;">
+                        <i class="fas fa-flag"></i> French Lessons
+                    </a>
+                    <a href="hablemos.html" class="resource-btn" style="background: var(--gradient-spanish); color: white;">
+                        <i class="fas fa-flag"></i> Spanish Lessons
+                    </a>
+                    <a href="pricing.html" class="resource-btn" style="background: var(--gradient-primary); color: white;">
+                        <i class="fas fa-tag"></i> Pricing Plans
+                    </a>
+                    <a href="index.html" class="resource-btn" style="background: rgba(255, 255, 255, 0.1); color: var(--text-primary); border: 2px solid var(--border);">
+                        <i class="fas fa-home"></i> Homepage
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-info-card">
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">
+                    <i class="fas fa-life-ring"></i> Need Immediate Assistance?
+                </h4>
+                
+                <p>
+                    <i class="fas fa-envelope" style="color: var(--primary);"></i> 
+                    Email: <strong>contact@yolingo.info</strong>
+                </p>
+                <p>
+                    <i class="fas fa-phone" style="color: var(--primary);"></i> 
+                    Call/Text: <strong>+1 818 262 1520</strong>
+                </p>
+                
+                <a href="https://wa.me/18182621520" class="whatsapp-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Chat on WhatsApp Now
+                </a>
+                
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-tertiary);">
+                    <i class="fas fa-clock"></i> Response time: Usually within 2 hours during business hours
                 </p>
             </div>
-        </div>
-        
-        <div style="margin: 3rem 0;">
-            <h3 style="color: var(--primary); margin-bottom: 1.5rem; font-size: 1.5rem;">
-                <i class="fas fa-compass"></i> In the meantime, explore our resources:
-            </h3>
-            <div class="resource-buttons">
-                <a href="parlons.html" class="resource-btn" style="background: var(--gradient-french); color: white;">
-                    <i class="fas fa-flag"></i> French Lessons
-                </a>
-                <a href="hablemos.html" class="resource-btn" style="background: var(--gradient-spanish); color: white;">
-                    <i class="fas fa-flag"></i> Spanish Lessons
-                </a>
-                <a href="pricing.html" class="resource-btn" style="background: var(--gradient-primary); color: white;">
-                    <i class="fas fa-tag"></i> Pricing Plans
-                </a>
-                <a href="index.html" class="resource-btn" style="background: var(--gray-light); color: var(--dark);">
-                    <i class="fas fa-home"></i> Homepage
-                </a>
+            
+            <!-- Downloadable Resources -->
+            <div class="download-resources">
+                <h4 style="color: var(--primary); margin-bottom: 1rem;">
+                    <i class="fas fa-download"></i> Free Learning Resources
+                </h4>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Download our free starter guides while you wait:
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="downloadResource('french_guide')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
+                        <i class="fas fa-file-pdf"></i> French Beginner's Guide
+                    </button>
+                    <button onclick="downloadResource('spanish_guide')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
+                        <i class="fas fa-file-pdf"></i> Spanish Beginner's Guide
+                    </button>
+                    <button onclick="downloadResource('learning_tips')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
+                        <i class="fas fa-lightbulb"></i> Language Learning Tips
+                    </button>
+                </div>
             </div>
         </div>
-        
-        <div class="contact-info-card">
-            <h4 style="color: var(--primary); margin-bottom: 1rem;">
-                <i class="fas fa-life-ring"></i> Need Immediate Assistance?
-            </h4>
-            
-            <p>
-                <i class="fas fa-envelope" style="color: var(--primary);"></i> 
-                Email: <strong>contact@yolingo.info</strong>
-            </p>
-            <p>
-                <i class="fas fa-phone" style="color: var(--primary);"></i> 
-                Call/Text: <strong>+1 818 262 1520</strong>
-            </p>
-            
-            <a href="https://wa.me/18182621520" class="whatsapp-button" target="_blank">
-                <i class="fab fa-whatsapp"></i>
-                Chat on WhatsApp Now
-            </a>
-            
-            <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray);">
-                <i class="fas fa-clock"></i> Response time: Usually within 2 hours during business hours
-            </p>
-        </div>
-        
-        <!-- Downloadable Resources -->
-        <div style="margin-top: 3rem; padding: 2rem; background: rgba(123, 97, 255, 0.05); border-radius: var(--radius);">
-            <h4 style="color: var(--primary); margin-bottom: 1rem;">
-                <i class="fas fa-download"></i> Free Learning Resources
-            </h4>
-            <p style="color: var(--gray); margin-bottom: 1rem;">
-                Download our free starter guides while you wait:
-            </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <button onclick="downloadResource('french_guide')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
-                    <i class="fas fa-file-pdf"></i> French Beginner's Guide
-                </button>
-                <button onclick="downloadResource('spanish_guide')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
-                    <i class="fas fa-file-pdf"></i> Spanish Beginner's Guide
-                </button>
-                <button onclick="downloadResource('learning_tips')" class="btn btn-outline" style="padding: 0.75rem 1.5rem;">
-                    <i class="fas fa-lightbulb"></i> Language Learning Tips
-                </button>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo-text-container" style="font-size: 2.5rem; margin-bottom: 1.5rem;">
+                        <span>Yo</span><span>Lingo</span>
+                    </div>
+                    <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow YoLingo on Instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="#" aria-label="Follow YoLingo on TikTok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                    </div>
                 </div>
-                <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
-                <div class="social" style="margin-top: 1.5rem;">
-                    <a href="#" aria-label="Follow us on Facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="#" aria-label="Follow us on Instagram">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="parlons.html">French Lessons</a>
+                    <a href="hablemos.html">Spanish Lessons</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
+                    <p><i class="fas fa-phone"></i> +1 818 262 1520</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Success Stories</h4>
+                    <a href="#testimonials">Student Testimonials</a>
+                    <a href="#progress">Progress Reports</a>
+                    <a href="#certifications">Certifications Earned</a>
+                    <a href="#community">Community Events</a>
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="index.html">Home</a>
-                <a href="parlons.html">French Lessons</a>
-                <a href="hablemos.html">Spanish Lessons</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YoLingo Language School. Designed for the digital generation. | 
+                    <a href="#">Privacy</a> • 
+                    <a href="#">Terms</a>
+                </p>
             </div>
-            
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
-                <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Success Stories</h4>
-                <a href="#testimonials">Student Testimonials</a>
-                <a href="#progress">Progress Reports</a>
-                <a href="#certifications">Certifications Earned</a>
-                <a href="#community">Community Events</a>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 YoLingo Language School. All rights reserved. | 
-                <a href="#" style="color: rgba(255,255,255,0.6);">Privacy Policy</a> | 
-                <a href="#" style="color: rgba(255,255,255,0.6);">Terms of Service</a>
-            </p>
         </div>
     </footer>
 
-       <script>
-        // ===== FIX LOGO ISSUE =====
-        function loadLogo() {
-            const logoImage = document.getElementById('logoImage');
-            const img = new Image();
-            
-            img.onload = function() {
-                // If logo.jpg exists, use it
-                logoImage.innerHTML = `<img src="logo.jpg" alt="YoLingo" loading="lazy">`;
-                logoImage.classList.add('loaded');
-            };
-            
-            img.onerror = function() {
-                // If logo.jpg doesn't exist, create a fallback
-                logoImage.innerHTML = `
-                    <div style="background: var(--gradient-primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; box-shadow: var(--shadow);">
-                        YL
-                    </div>
-                `;
-                logoImage.classList.add('loaded');
-            };
-            
-            // Try to load the logo
-            img.src = 'logo.jpg';
-        }
+    <!-- JavaScript -->
+    <script>
+        // ===== MOBILE NAVIGATION =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-links a');
         
-        // ===== THEME MANAGEMENT =====
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        // Check for saved theme or prefer-color-scheme
-        function getPreferredTheme() {
-            const savedTheme = localStorage.getItem('yolingo_theme');
-            if (savedTheme) return savedTheme;
-            
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        
-        // Apply theme
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('yolingo_theme', theme);
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
             
             // Update icon
-            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            
-            // Update meta theme-color for mobile browsers
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#7b61ff');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
             }
         }
         
-        // Toggle theme
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(newTheme);
-            
-            // Add animation
-            themeToggle.style.transform = 'rotate(180deg) scale(1.1)';
-            setTimeout(() => {
-                themeToggle.style.transform = 'rotate(0) scale(1)';
-            }, 300);
-            
-            // Show notification
-            showNotification(`${newTheme === 'dark' ? 'Dark' : 'Light'} mode activated`, 'info');
-        }
-        
-        // Initialize theme
-        applyTheme(getPreferredTheme());
-        themeToggle.addEventListener('click', toggleTheme);
-        
-        // Listen for system theme changes
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('yolingo_theme')) {
-                applyTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-        
-        // ===== LANGUAGE MANAGEMENT =====
-        function toggleLanguageDropdown() {
-            const dropdown = document.getElementById('languageDropdown');
-            const isShowing = dropdown.classList.contains('show');
-            
-            // Close all other dropdowns
-            document.querySelectorAll('.lang-dropdown.show').forEach(d => {
-                if (d !== dropdown) d.classList.remove('show');
-            });
-            
-            // Toggle current dropdown
-            dropdown.classList.toggle('show');
-            
-            // Update chevron icon
-            const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-            if (chevron) {
-                chevron.style.transform = isShowing ? 'rotate(0deg)' : 'rotate(180deg)';
-            }
-        }
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.language-switcher')) {
-                document.getElementById('languageDropdown').classList.remove('show');
-                const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-                if (chevron) {
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-        });
-        
-        // Language translations dictionary
-        const translations = {
-            en: {
-                nav: {
-                    home: "Home",
-                    parlons: "Parlons (French)",
-                    hablemos: "Hablemos (Spanish)",
-                    pricing: "Pricing",
-                    contact: "Contact"
-                },
-                hero: {
-                    title: "Learn Languages with <span class='highlight'>YoLingo</span>",
-                    subtitle: "Where culture meets conversation. Master French or Spanish with native speakers in interactive, personalized lessons."
-                },
-                why: "Why Choose <span class='highlight'>YoLingo</span>?",
-                stats: "Ready to Start Your Language Journey?",
-                // Add more translations as needed
-            },
-            fr: {
-                nav: {
-                    home: "Accueil",
-                    parlons: "Parlons (Français)",
-                    hablemos: "Hablemos (Espagnol)",
-                    pricing: "Tarifs",
-                    contact: "Contact"
-                },
-                hero: {
-                    title: "Apprenez les langues avec <span class='highlight'>YoLingo</span>",
-                    subtitle: "Où la culture rencontre la conversation. Maîtrisez le français ou l'espagnol avec des locuteurs natifs dans des cours interactifs et personnalisés."
-                },
-                why: "Pourquoi choisir <span class='highlight'>YoLingo</span> ?",
-                stats: "Prêt à commencer votre apprentissage linguistique ?",
-            },
-            ru: {
-                nav: {
-                    home: "Главная",
-                    parlons: "Parlons (Французский)",
-                    hablemos: "Hablemos (Испанский)",
-                    pricing: "Цены",
-                    contact: "Контакты"
-                },
-                hero: {
-                    title: "Изучайте языки с <span class='highlight'>YoLingo</span>",
-                    subtitle: "Место, где культура встречается с общением. Освойте французский или испанский с носителями языка на интерактивных персонализированных уроках."
-                },
-                why: "Почему стоит выбрать <span class='highlight'>YoLingo</span>?",
-                stats: "Готовы начать своё языковое путешествие?",
-            }
-        };
-        
-        // Language selection
-        document.querySelectorAll('.lang-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = option.dataset.lang;
-                
-                // Update active state
-                document.querySelectorAll('.lang-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                option.classList.add('active');
-                
-                // Update button text
-                const langSpan = document.querySelector('.lang-toggle span');
-                if (langSpan) {
-                    langSpan.textContent = lang.toUpperCase();
-                }
-                
-                // Close dropdown
-                document.getElementById('languageDropdown').classList.remove('show');
-                const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-                if (chevron) {
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-                
-                // Apply translations
-                applyTranslations(lang);
-                
-                // Show notification
-                showNotification(`Language changed to ${getLanguageName(lang)}`, 'success');
-                
-                // Store preference
-                localStorage.setItem('yolingo_language', lang);
+        // Close menu when clicking a link
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
             });
         });
-        
-        function getLanguageName(code) {
-            const names = {
-                'en': 'English',
-                'fr': 'Français',
-                'ru': 'Русский'
-            };
-            return names[code] || code.toUpperCase();
-        }
-        
-        function applyTranslations(lang) {
-            const translation = translations[lang] || translations.en;
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            if (navLinks[0]) navLinks[0].textContent = translation.nav.home;
-            if (navLinks[1]) navLinks[1].textContent = translation.nav.parlons;
-            if (navLinks[2]) navLinks[2].textContent = translation.nav.hablemos;
-            if (navLinks[3]) navLinks[3].textContent = translation.nav.pricing;
-            if (navLinks[4]) navLinks[4].textContent = translation.nav.contact;
-            
-            // Update hero section
-            const hero = document.querySelector('.hero-content');
-            if (hero) {
-                const h1 = hero.querySelector('h1');
-                const subtitle = hero.querySelector('.subtitle');
-                if (h1) h1.innerHTML = translation.hero.title;
-                if (subtitle) subtitle.textContent = translation.hero.subtitle;
-            }
-            
-            // Update why yolingo section
-            const whySection = document.querySelector('.why-yolingo h2');
-            if (whySection) {
-                whySection.innerHTML = translation.why;
-            }
-            
-            // Update CTA section
-            const ctaSection = document.querySelector('.cta h2');
-            if (ctaSection) {
-                ctaSection.textContent = translation.stats;
-            }
-            
-            // Update page title
-            document.title = `YoLingo | ${getLanguageName(lang)} Lessons with Native Teachers`;
-        }
-        
-        // ===== NAVIGATION =====
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-            const icon = document.querySelector('.menu-toggle i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        }
         
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
                 navLinks.classList.remove('active');
-                const icon = document.querySelector('.menu-toggle i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
             }
         });
         
-        // Close menu on link click (mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-                const icon = document.querySelector('.menu-toggle i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            });
+        // ===== NAVBAR SCROLL EFFECT =====
+        const navbar = document.getElementById('mainNav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
         
-        // ===== NOTIFICATION SYSTEM =====
-        function showNotification(message, type) {
-            // Remove any existing notifications
-            document.querySelectorAll('.custom-notification').forEach(n => n.remove());
-            
-            const notification = document.createElement('div');
-            notification.className = `custom-notification alert-${type}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                z-index: 10000;
-                padding: 1rem 1.5rem;
-                border-radius: var(--radius-sm);
-                box-shadow: var(--shadow-hover);
-                background: ${type === 'success' ? 'var(--success)' : 
-                            type === 'error' ? 'var(--error)' : 
-                            type === 'warning' ? 'var(--warning)' : 'var(--info)'};
-                color: white;
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                animation: slideIn 0.3s ease-out;
-                max-width: 350px;
-                border-left: 4px solid ${type === 'success' ? 'rgba(16, 185, 129, 0.7)' : 
-                                    type === 'error' ? 'rgba(239, 68, 68, 0.7)' : 
-                                    type === 'warning' ? 'rgba(245, 158, 11, 0.7)' : 'rgba(59, 130, 246, 0.7)'};
-            `;
-            
-            const icon = type === 'success' ? 'fa-check-circle' :
-                        type === 'error' ? 'fa-exclamation-circle' :
-                        type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
-            
-            notification.innerHTML = `
-                <i class="fas ${icon}" style="font-size: 1.2rem;"></i>
-                <span style="flex: 1;">${message}</span>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+        // ===== COUNTDOWN TIMER =====
+        let countdownTime = 15;
+        const countdownElement = document.getElementById('timer');
+        let countdownInterval;
+        
+        function startCountdown() {
+            countdownInterval = setInterval(() => {
+                countdownTime--;
+                countdownElement.textContent = countdownTime;
+                
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = 'index.html';
+                }
+            }, 1000);
         }
         
-        // ===== ANIMATED COUNTERS =====
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target + (element.textContent.includes('%') ? '%' : '+');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : '+');
-                }
-            }, 16);
+        // ===== RESOURCE DOWNLOAD =====
+        function downloadResource(type) {
+            const resources = {
+                'french_guide': 'https://example.com/french-beginners-guide.pdf',
+                'spanish_guide': 'https://example.com/spanish-beginners-guide.pdf',
+                'learning_tips': 'https://example.com/language-learning-tips.pdf'
+            };
+            
+            // Create temporary download link
+            const link = document.createElement('a');
+            link.href = resources[type] || '#';
+            link.target = '_blank';
+            link.download = `${type}_yolingo.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Show success message
+            alert('Your download has started! Check your downloads folder.');
         }
         
-        // Animate stats when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const stats = entry.target.querySelectorAll('.stat h3');
-                    stats.forEach(stat => {
-                        const value = parseInt(stat.dataset.count);
-                        if (!isNaN(value)) {
-                            animateCounter(stat, value, 1500);
-                        }
-                    });
-                    observer.unobserve(entry.target);
+        // ===== INITIALIZATION =====
+        window.addEventListener('DOMContentLoaded', () => {
+            // Event listeners
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
                 }
             });
-        }, observerOptions);
-        
-        // ===== ENHANCED HOVER EFFECTS =====
-        document.querySelectorAll('.language-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.boxShadow = 'var(--shadow-glow)';
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-            });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.boxShadow = 'var(--shadow)';
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-        
-        // ===== SMOOTH SCROLLING =====
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // ===== RIPPLE BUTTON EFFECT =====
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Create ripple
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.6);
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    width: ${size}px;
-                    height: ${size}px;
-                    top: ${y}px;
-                    left: ${x}px;
-                    pointer-events: none;
-                `;
-                
-                this.appendChild(ripple);
-                
-                // Remove ripple after animation
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-        
-        // ===== INITIALIZE ON LOAD =====
-        window.addEventListener('load', function() {
-            // Load logo
-            loadLogo();
+            // Start countdown
+            startCountdown();
             
-            // Observe stats section
-            const statsSection = document.querySelector('.stats');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
-            
-            // Load saved language preference
-            const savedLang = localStorage.getItem('yolingo_language') || 'en';
-            const savedOption = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
-            if (savedOption) {
-                savedOption.click();
-            }
-            
-            // Add loaded class
-            document.body.classList.add('loaded');
-            
-            // Ensure start-link text fits
-            document.querySelectorAll('.start-link').forEach(link => {
-                link.style.fontSize = '0.95rem';
-                link.style.padding = '0.6rem 1.2rem';
-            });
-        });
-        
-        // ===== KEYBOARD NAVIGATION =====
-        document.addEventListener('keydown', function(e) {
-            // Escape key closes dropdowns and menus
-            if (e.key === 'Escape') {
-                document.getElementById('languageDropdown').classList.remove('show');
-                document.getElementById('navLinks').classList.remove('active');
-                const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-                if (chevron) {
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-                const icon = document.querySelector('.menu-toggle i');
-                if (icon) {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            }
-            
-            // Tab key management for dropdowns
-            if (e.key === 'Tab') {
-                const activeElement = document.activeElement;
-                const dropdown = document.getElementById('languageDropdown');
+            // Pause countdown on hover
+            const countdownContainer = document.querySelector('.countdown-container');
+            if (countdownContainer) {
+                countdownContainer.addEventListener('mouseenter', () => {
+                    clearInterval(countdownInterval);
+                });
                 
-                if (dropdown.classList.contains('show') && 
-                    !dropdown.contains(activeElement) && 
-                    !document.querySelector('.lang-toggle').contains(activeElement)) {
-                    dropdown.classList.remove('show');
-                    const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-                    if (chevron) {
-                        chevron.style.transform = 'rotate(0deg)';
-                    }
-                }
+                countdownContainer.addEventListener('mouseleave', () => {
+                    startCountdown();
+                });
             }
         });
-        
-        // Add CSS for animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            @keyframes slideIn {
-                from {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-            .btn {
-                position: relative;
-                overflow: hidden;
-            }
-            .custom-notification {
-                transition: all 0.3s ease;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
