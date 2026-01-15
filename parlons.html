@@ -378,8 +378,8 @@
             
             <div class="footer-bottom">
                 <p>&copy; 2026 YoLingo Language School. Designed for the digital generation. | 
-                    <a href="#" style="color: rgba(255,255,255,0.6);">Privacy</a> • 
-                    <a href="#" style="color: rgba(255,255,255,0.6);">Terms</a>
+                    <a href="#">Privacy</a> • 
+                    <a href="#">Terms</a>
                 </p>
             </div>
         </div>
@@ -441,22 +441,6 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
-        
-        // ===== SMOOTH SCROLL FOR LEVEL LINKS =====
-        document.querySelectorAll('a[href^="#level-"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
         
         // ===== INITIALIZATION =====
