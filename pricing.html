@@ -1,67 +1,235 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Plans - YoLingo Language School</title>
 
-    <!-- ===== FAVICON ===== -->
-    <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">
-    <meta name="theme-color" content="#7b61ff">
-    <!-- =================== -->
+    <!-- ===== FAVICON & SEO META TAGS ===== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#0f0f23">
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Affordable pricing plans for YoLingo language courses. Group classes, private lessons, and intensive courses with flexible scheduling for young adults.">
+    <meta name="keywords" content="language course pricing, french lessons cost, spanish lessons price, affordable language learning, group classes, private lessons">
+    <meta name="author" content="YoLingo Language School">
+    
+    <!-- ===== STYLES & FONTS ===== -->
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .page-header {
+            padding: 12rem 0 6rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.9) 0%, rgba(139, 92, 246, 0.9) 100%);
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .page-header .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .additional-services {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+        
+        .additional-services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--text-primary);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-card);
+        }
+        
+        .service:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+        
+        .service h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .service-price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1.5rem 0;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+        
+        .service p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .money-back {
+            padding: 6rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--success) 0%, #0ca678 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .money-back h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .money-back p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .faq {
+            padding: 6rem 0;
+        }
+        
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--text-primary);
+        }
+        
+        .faq-item {
+            background: var(--bg-secondary);
+            margin-bottom: 1.5rem;
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            box-shadow: var(--shadow-card);
+        }
+        
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+        
+        .faq-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .faq-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out;
+            opacity: 0;
+            margin-top: 0;
+        }
+        
+        .faq-item.active p {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+        
+        .faq-item.active h3 {
+            color: var(--primary);
+        }
+        
+        .faq-item .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 <body>
-    <!-- Skip to content link for accessibility -->
-    <a href="#main-content" class="skip-to-content">Skip to main content</a>
-    
     <!-- Navigation -->
-    <nav>
+    <nav id="mainNav">
         <div class="logo" onclick="window.location.href='index.html'">
-            <img src="logo.jpg" alt="YoLingo" class="logo-image" loading="lazy">
+            <div class="logo-image">
+                <span>YL</span>
+            </div>
             <div class="logo-text-container">
-                <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+                <span>Yo</span><span>Lingo</span>
             </div>
         </div>
         
-        <div class="nav-controls">
-            <!-- Language Switcher -->
-            <div class="language-switcher">
-                <button class="lang-toggle" onclick="toggleLanguageDropdown()">
-                    <i class="fas fa-globe"></i>
-                    <span>EN</span>
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="lang-dropdown" id="languageDropdown">
-                    <a href="#" class="lang-option active" data-lang="en">
-                        <i class="fas fa-language"></i> English
-                    </a>
-                    <a href="#" class="lang-option" data-lang="fr">
-                        <i class="fas fa-language"></i> Français
-                    </a>
-                    <a href="#" class="lang-option" data-lang="ru">
-                        <i class="fas fa-language"></i> Русский
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Dark Mode Toggle -->
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <i class="fas fa-moon"></i>
-            </button>
-            
-            <!-- Mobile menu button -->
-            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+        <!-- Mobile Menu Button -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
         
+        <!-- Navigation Links -->
         <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="parlons.html">Parlons (French)</a>
@@ -72,542 +240,370 @@
     </nav>
     
     <!-- Header -->
-    <header class="page-header pricing-header" id="main-content">
-        <h1>YoLingo Pricing Plans</h1>
-        <p class="subtitle">Choose the perfect plan for your language learning journey. All prices are per 4 weeks and include full access to YoLingo learning materials and resources.</p>
+    <header class="page-header">
+        <div class="container">
+            <h1>YoLingo Pricing Plans</h1>
+            <p class="subtitle">Choose the perfect plan for your language learning journey. All prices are per 4 weeks and include full access to YoLingo learning materials and resources.</p>
+        </div>
     </header>
     
     <!-- Pricing Plans -->
-    <section class="pricing-plans">
-        <div class="plan hover-lift">
-            <div class="plan-header">
-                <h3>Group Classes</h3>
-                <p class="plan-description">Perfect for social learners who enjoy group dynamics</p>
-            </div>
-            <div class="plan-price">
-                <span class="price">$149</span>
-                <span class="period">per 4 weeks</span>
-                <p style="color: var(--success); font-size: 0.9rem; margin-top: 0.5rem;">
-                    <i class="fas fa-bolt"></i> Save 20% with 3-month commitment
-                </p>
-            </div>
-            <ul class="plan-features">
-                <li>✓ 4 students max per class for personalized attention</li>
-                <li>✓ 8 sessions (2 per week, 60 minutes each)</li>
-                <li>✓ All digital course materials included</li>
-                <li>✓ Weekly practice exercises with feedback</li>
-                <li>✓ Detailed progress reports every 2 weeks</li>
-                <li>✓ Full access to YoLingo learning app</li>
-                <li>✓ YoLingo certificate upon completion</li>
-                <li>✓ Access to student community forum</li>
-            </ul>
-            <a href="contact.html?plan=group" class="btn btn-outline">
-                <i class="fas fa-users"></i>
-                Choose Group Plan
-            </a>
-        </div>
-        
-        <div class="plan popular hover-lift">
-            <div class="popular-badge">MOST POPULAR</div>
-            <div class="plan-header">
-                <h3>Private Lessons</h3>
-                <p class="plan-description">Fully personalized attention and flexible scheduling</p>
-            </div>
-            <div class="plan-price">
-                <span class="price">$249</span>
-                <span class="period">per 4 weeks</span>
-                <p style="color: var(--success); font-size: 0.9rem; margin-top: 0.5rem;">
-                    <i class="fas fa-bolt"></i> Save 25% with 3-month commitment
-                </p>
-            </div>
-            <ul class="plan-features">
-                <li>✓ One-on-one with native teacher</li>
-                <li>✓ 8 personalized sessions (flexible scheduling)</li>
-                <li>✓ Custom learning plan tailored to your goals</li>
-                <li>✓ Priority 24/7 support via WhatsApp</li>
-                <li>✓ All Group features included plus:</li>
-                <li>✓ Detailed weekly progress tracking</li>
-                <li>✓ Homework corrections with detailed feedback</li>
-                <li>✓ Personalized resource recommendations</li>
-                <li>✓ Exam strategy sessions (if applicable)</li>
-            </ul>
-            <a href="contact.html?plan=private" class="btn btn-primary">
-                <i class="fas fa-user-graduate"></i>
-                Choose Private Plan
-            </a>
-        </div>
-        
-        <div class="plan hover-lift">
-            <div class="plan-header">
-                <h3>Intensive Course</h3>
-                <p class="plan-description">Fast-track your learning with daily immersion</p>
-            </div>
-            <div class="plan-price">
-                <span class="price">$649</span>
-                <span class="period">per 4 weeks</span>
-                <p style="color: var(--success); font-size: 0.9rem; margin-top: 0.5rem;">
-                    <i class="fas fa-bolt"></i> Save 30% with 3-month commitment
-                </p>
-            </div>
-            <ul class="plan-features">
-                <li>✓ Daily classes (5x per week, 90 minutes each)</li>
-                <li>✓ 20 intensive sessions per month</li>
-                <li>✓ Ultra-small group (3 students max)</li>
-                <li>✓ Extra materials & premium resources</li>
-                <li>✓ Priority support with dedicated advisor</li>
-                <li>✓ Exam preparation materials & mock tests</li>
-                <li>✓ All Private features included plus:</li>
-                <li>✓ Accelerated learning path</li>
-                <li>✓ Cultural immersion workshops</li>
-                <li>✓ Conversation partner matching</li>
-            </ul>
-            <a href="contact.html?plan=intensive" class="btn btn-outline">
-                <i class="fas fa-rocket"></i>
-                Choose Intensive Plan
-            </a>
-        </div>
-    </section>
-    
-    <!-- Additional Services -->
-    <section class="additional-services">
-        <h2>Additional YoLingo Services</h2>
-        <div class="services-grid">
-            <div class="service hover-lift">
-                <h3>Conversation Club</h3>
-                <p class="service-price">$50/month</p>
-                <p>Weekly conversation practice with native speakers and other students. Perfect for maintaining fluency.</p>
-                <a href="contact.html?service=conversation" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                    Join Club
-                </a>
-            </div>
-            <div class="service hover-lift">
-                <h3>Exam Preparation</h3>
-                <p class="service-price">$199/course</p>
-                <p>DELF/DALF or DELE exam preparation with mock tests, strategy sessions, and personalized feedback.</p>
-                <a href="contact.html?service=exam" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                    Prepare Now
-                </a>
-            </div>
-            <div class="service hover-lift">
-                <h3>Business Language</h3>
-                <p class="service-price">$399/course</p>
-                <p>Professional vocabulary and business communication skills for the workplace, meetings, and presentations.</p>
-                <a href="contact.html?service=business" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                    Learn More
-                </a>
-            </div>
-            <div class="service hover-lift">
-                <h3>Corporate Packages</h3>
-                <p class="service-price">Custom Quote</p>
-                <p>Group training for companies and organizations with flexible scheduling, progress reporting, and volume discounts.</p>
-                <a href="contact.html?service=corporate" class="btn btn-outline" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
-                    Get Quote
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Guarantee Section -->
-    <section class="money-back">
-        <h2><i class="fas fa-shield-alt"></i> 100% Satisfaction Guarantee</h2>
-        <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">
-            Try your first lesson completely risk-free. If you're not completely satisfied with our teaching method, 
-            we offer a full refund within 7 days of your first session. No questions asked.
-        </p>
-        <div style="margin-top: 2rem;">
-            <div style="display: inline-flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.1); padding: 1rem 2rem; border-radius: var(--radius-sm);">
-                <i class="fas fa-lock" style="font-size: 2rem;"></i>
-                <div style="text-align: left;">
-                    <h4 style="margin: 0; font-size: 1.1rem;">Secure Payment</h4>
-                    <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">All payments are 100% secure and encrypted</p>
+    <main>
+        <section class="pricing-plans">
+            <div class="container">
+                <div class="plan">
+                    <div class="plan-header">
+                        <h3>Group Classes</h3>
+                        <p class="plan-description">Perfect for social learners who enjoy group dynamics</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$149</span>
+                        <span class="period">per 4 weeks</span>
+                        <p style="color: var(--success); font-size: 1rem; margin-top: 0.5rem;">
+                            <i class="fas fa-bolt"></i> Save 20% with 3-month commitment
+                        </p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ 4 students max per class for personalized attention</li>
+                        <li>✓ 8 sessions (2 per week, 60 minutes each)</li>
+                        <li>✓ All digital course materials included</li>
+                        <li>✓ Weekly practice exercises with feedback</li>
+                        <li>✓ Detailed progress reports every 2 weeks</li>
+                        <li>✓ Full access to YoLingo learning app</li>
+                        <li>✓ YoLingo certificate upon completion</li>
+                        <li>✓ Access to student community forum</li>
+                    </ul>
+                    <a href="contact.html?plan=group" class="btn btn-outline">
+                        <i class="fas fa-users"></i>
+                        Choose Group Plan
+                    </a>
+                </div>
+                
+                <div class="plan popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <div class="plan-header">
+                        <h3>Private Lessons</h3>
+                        <p class="plan-description">Fully personalized attention and flexible scheduling</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$249</span>
+                        <span class="period">per 4 weeks</span>
+                        <p style="color: var(--success); font-size: 1rem; margin-top: 0.5rem;">
+                            <i class="fas fa-bolt"></i> Save 25% with 3-month commitment
+                        </p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ One-on-one with native teacher</li>
+                        <li>✓ 8 personalized sessions (flexible scheduling)</li>
+                        <li>✓ Custom learning plan tailored to your goals</li>
+                        <li>✓ Priority 24/7 support via WhatsApp</li>
+                        <li>✓ All Group features included plus:</li>
+                        <li>✓ Detailed weekly progress tracking</li>
+                        <li>✓ Homework corrections with detailed feedback</li>
+                        <li>✓ Personalized resource recommendations</li>
+                        <li>✓ Exam strategy sessions (if applicable)</li>
+                    </ul>
+                    <a href="contact.html?plan=private" class="btn btn-primary">
+                        <i class="fas fa-user-graduate"></i>
+                        Choose Private Plan
+                    </a>
+                </div>
+                
+                <div class="plan">
+                    <div class="plan-header">
+                        <h3>Intensive Course</h3>
+                        <p class="plan-description">Fast-track your learning with daily immersion</p>
+                    </div>
+                    <div class="plan-price">
+                        <span class="price">$649</span>
+                        <span class="period">per 4 weeks</span>
+                        <p style="color: var(--success); font-size: 1rem; margin-top: 0.5rem;">
+                            <i class="fas fa-bolt"></i> Save 30% with 3-month commitment
+                        </p>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✓ Daily classes (5x per week, 90 minutes each)</li>
+                        <li>✓ 20 intensive sessions per month</li>
+                        <li>✓ Ultra-small group (3 students max)</li>
+                        <li>✓ Extra materials & premium resources</li>
+                        <li>✓ Priority support with dedicated advisor</li>
+                        <li>✓ Exam preparation materials & mock tests</li>
+                        <li>✓ All Private features included plus:</li>
+                        <li>✓ Accelerated learning path</li>
+                        <li>✓ Cultural immersion workshops</li>
+                        <li>✓ Conversation partner matching</li>
+                    </ul>
+                    <a href="contact.html?plan=intensive" class="btn btn-outline">
+                        <i class="fas fa-rocket"></i>
+                        Choose Intensive Plan
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <!-- Additional Services -->
+        <section class="additional-services">
+            <div class="container">
+                <h2>Additional YoLingo Services</h2>
+                <div class="services-grid">
+                    <div class="service">
+                        <h3>Conversation Club</h3>
+                        <p class="service-price">$50/month</p>
+                        <p>Weekly conversation practice with native speakers and other students. Perfect for maintaining fluency.</p>
+                        <a href="contact.html?service=conversation" class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 0.9rem;">
+                            Join Club
+                        </a>
+                    </div>
+                    <div class="service">
+                        <h3>Exam Preparation</h3>
+                        <p class="service-price">$199/course</p>
+                        <p>DELF/DALF or DELE exam preparation with mock tests, strategy sessions, and personalized feedback.</p>
+                        <a href="contact.html?service=exam" class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 0.9rem;">
+                            Prepare Now
+                        </a>
+                    </div>
+                    <div class="service">
+                        <h3>Business Language</h3>
+                        <p class="service-price">$399/course</p>
+                        <p>Professional vocabulary and business communication skills for the workplace, meetings, and presentations.</p>
+                        <a href="contact.html?service=business" class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 0.9rem;">
+                            Learn More
+                        </a>
+                    </div>
+                    <div class="service">
+                        <h3>Corporate Packages</h3>
+                        <p class="service-price">Custom Quote</p>
+                        <p>Group training for companies and organizations with flexible scheduling, progress reporting, and volume discounts.</p>
+                        <a href="contact.html?service=corporate" class="btn btn-outline" style="padding: 0.8rem 2rem; font-size: 0.9rem;">
+                            Get Quote
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Guarantee Section -->
+        <section class="money-back">
+            <div class="container">
+                <h2><i class="fas fa-shield-alt"></i> 100% Satisfaction Guarantee</h2>
+                <p>Try your first lesson completely risk-free. If you're not completely satisfied with our teaching method, we offer a full refund within 7 days of your first session. No questions asked.</p>
+                <div style="margin-top: 3rem;">
+                    <div style="display: inline-flex; align-items: center; gap: 1.5rem; background: rgba(255,255,255,0.1); padding: 1.5rem 3rem; border-radius: var(--radius-sm);">
+                        <i class="fas fa-lock" style="font-size: 2.5rem;"></i>
+                        <div style="text-align: left;">
+                            <h4 style="margin: 0; font-size: 1.3rem;">Secure Payment</h4>
+                            <p style="margin: 0; opacity: 0.9; font-size: 1rem;">All payments are 100% secure and encrypted</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- FAQ -->
-    <section class="faq">
-        <h2>Frequently Asked Questions</h2>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-exchange-alt"></i> Can I switch between plans?</h3>
-            <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. We prorate any differences in pricing to ensure you only pay for what you use.</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-credit-card"></i> How do payments work?</h3>
-            <p>All plans are billed every 4 weeks. You can pay via credit card, PayPal, or bank transfer. We send payment reminders 3 days before renewal. All major credit cards and digital payment methods are accepted.</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-percentage"></i> Do you offer discounts?</h3>
-            <p>Yes! We offer 10% discount for students (with valid ID) and 15% discount for 3-month commitments. Contact us directly for family discounts (multiple family members) or group discounts (3+ people signing up together).</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-calendar-times"></i> What if I miss a class?</h3>
-            <p>For private lessons, we offer makeup sessions with 24-hour notice. Group classes have recorded sessions available within 24 hours, and you can attend a similar level class later in the week if space is available.</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-user-clock"></i> Can I pause my subscription?</h3>
-            <p>Yes, you can pause your subscription for up to 4 weeks per year for vacations or personal reasons. Just notify us at least 7 days before your next billing date.</p>
-        </div>
-        
-        <div class="faq-item">
-            <h3><i class="fas fa-graduation-cap"></i> Are materials included?</h3>
-            <p>Yes! All digital learning materials are included in your subscription. This includes textbooks, workbooks, audio materials, and access to our exclusive learning platform with interactive exercises.</p>
-        </div>
-    </section>
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-exchange-alt"></i> Can I switch between plans?</h3>
+                    <p>Yes! You can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle. We prorate any differences in pricing to ensure you only pay for what you use.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-credit-card"></i> How do payments work?</h3>
+                    <p>All plans are billed every 4 weeks. You can pay via credit card, PayPal, or bank transfer. We send payment reminders 3 days before renewal. All major credit cards and digital payment methods are accepted.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-percentage"></i> Do you offer discounts?</h3>
+                    <p>Yes! We offer 10% discount for students (with valid ID) and 15% discount for 3-month commitments. Contact us directly for family discounts (multiple family members) or group discounts (3+ people signing up together).</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-calendar-times"></i> What if I miss a class?</h3>
+                    <p>For private lessons, we offer makeup sessions with 24-hour notice. Group classes have recorded sessions available within 24 hours, and you can attend a similar level class later in the week if space is available.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-user-clock"></i> Can I pause my subscription?</h3>
+                    <p>Yes, you can pause your subscription for up to 4 weeks per year for vacations or personal reasons. Just notify us at least 7 days before your next billing date.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3><i class="fas fa-graduation-cap"></i> Are materials included?</h3>
+                    <p>Yes! All digital learning materials are included in your subscription. This includes textbooks, workbooks, audio materials, and access to our exclusive learning platform with interactive exercises.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <span class="logo-text">Yo</span><span class="logo-highlight">Lingo</span>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo-text-container" style="font-size: 2.5rem; margin-bottom: 1.5rem;">
+                        <span>Yo</span><span>Lingo</span>
+                    </div>
+                    <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Follow YoLingo on Instagram">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="#" aria-label="Follow YoLingo on TikTok">
+                            <i class="fab fa-tiktok"></i> TikTok
+                        </a>
+                    </div>
                 </div>
-                <p>Making language learning accessible, fun, and effective since 2020. Join our community of passionate learners.</p>
-                <div class="social" style="margin-top: 1.5rem;">
-                    <a href="#" aria-label="Follow us on Facebook">
-                        <i class="fab fa-facebook-f"></i> Facebook
-                    </a>
-                    <a href="#" aria-label="Follow us on Instagram">
-                        <i class="fab fa-instagram"></i> Instagram
-                    </a>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="parlons.html">French Lessons</a>
+                    <a href="hablemos.html">Spanish Lessons</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
+                    <p><i class="fas fa-phone"></i> +1 818 262 1520</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Payment Methods</h4>
+                    <p><i class="fab fa-cc-visa"></i> Visa</p>
+                    <p><i class="fab fa-cc-mastercard"></i> Mastercard</p>
+                    <p><i class="fab fa-cc-paypal"></i> PayPal</p>
+                    <p><i class="fas fa-university"></i> Bank Transfer</p>
                 </div>
             </div>
             
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="index.html">Home</a>
-                <a href="parlons.html">French Lessons</a>
-                <a href="hablemos.html">Spanish Lessons</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="contact.html">Contact</a>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YoLingo Language School. Designed for the digital generation. | 
+                    <a href="#" style="color: rgba(255,255,255,0.6);">Privacy</a> • 
+                    <a href="#" style="color: rgba(255,255,255,0.6);">Terms</a>
+                </p>
             </div>
-            
-            <div class="footer-section">
-                <h4>Contact Info</h4>
-                <p><i class="fas fa-envelope"></i> contact@yolingo.info</p>
-                <p><i class="fas fa-phone"></i> +1 818 262 1520 (WhatsApp)</p>
-                <p><i class="fas fa-clock"></i> Mon-Fri: 9am-8pm EST</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Payment Methods</h4>
-                <p><i class="fab fa-cc-visa"></i> Visa</p>
-                <p><i class="fab fa-cc-mastercard"></i> Mastercard</p>
-                <p><i class="fab fa-cc-paypal"></i> PayPal</p>
-                <p><i class="fas fa-university"></i> Bank Transfer</p>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2026 YoLingo Language School. All rights reserved. | <a href="#" style="color: rgba(255,255,255,0.6);">Privacy Policy</a> | <a href="#" style="color: rgba(255,255,255,0.6);">Terms of Service</a></p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // ===== THEME MANAGEMENT =====
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
+        // ===== MOBILE NAVIGATION =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navItems = document.querySelectorAll('.nav-links a');
         
-        function getPreferredTheme() {
-            const savedTheme = localStorage.getItem('yolingo_theme');
-            if (savedTheme) return savedTheme;
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('yolingo_theme', theme);
-            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            
-            // Update meta theme-color for mobile browsers
-            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-            if (metaThemeColor) {
-                metaThemeColor.setAttribute('content', theme === 'dark' ? '#0f172a' : '#7b61ff');
-            }
-        }
-        
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            applyTheme(newTheme);
-            
-            // Add animation
-            themeToggle.style.transform = 'rotate(180deg) scale(1.1)';
-            setTimeout(() => {
-                themeToggle.style.transform = 'rotate(0) scale(1)';
-            }, 300);
-            
-            // Show notification
-            showNotification(`${newTheme === 'dark' ? 'Dark' : 'Light'} mode activated`, 'info');
-        }
-        
-        applyTheme(getPreferredTheme());
-        themeToggle.addEventListener('click', toggleTheme);
-        
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('yolingo_theme')) {
-                applyTheme(e.matches ? 'dark' : 'light');
-            }
-        });
-        
-        // ===== LANGUAGE MANAGEMENT =====
-        function toggleLanguageDropdown() {
-            const dropdown = document.getElementById('languageDropdown');
-            const isShowing = dropdown.classList.contains('show');
-            
-            // Close all other dropdowns
-            document.querySelectorAll('.lang-dropdown.show').forEach(d => {
-                if (d !== dropdown) d.classList.remove('show');
-            });
-            
-            // Toggle current dropdown
-            dropdown.classList.toggle('show');
-            
-            // Update chevron icon
-            const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-            if (chevron) {
-                chevron.style.transform = isShowing ? 'rotate(0deg)' : 'rotate(180deg)';
-            }
-        }
-        
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.language-switcher')) {
-                document.getElementById('languageDropdown').classList.remove('show');
-                const chevron = document.querySelector('.lang-toggle .fa-chevron-down');
-                if (chevron) {
-                    chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-        });
-        
-        // Language translations dictionary
-        const translations = {
-            en: {
-                nav: {
-                    home: "Home",
-                    parlons: "Parlons (French)",
-                    hablemos: "Hablemos (Spanish)",
-                    pricing: "Pricing",
-                    contact: "Contact"
-                },
-                header: {
-                    title: "YoLingo Pricing Plans",
-                    subtitle: "Choose the perfect plan for your language learning journey. All prices are per 4 weeks and include full access to YoLingo learning materials and resources."
-                },
-                // Add more translations as needed
-            },
-            fr: {
-                nav: {
-                    home: "Accueil",
-                    parlons: "Parlons (Français)",
-                    hablemos: "Hablemos (Espagnol)",
-                    pricing: "Tarifs",
-                    contact: "Contact"
-                },
-                header: {
-                    title: "Plans Tarifaires YoLingo",
-                    subtitle: "Choisissez le plan parfait pour votre apprentissage linguistique. Tous les prix sont pour 4 semaines et incluent un accès complet aux ressources d'apprentissage YoLingo."
-                }
-            },
-            ru: {
-                nav: {
-                    home: "Главная",
-                    parlons: "Parlons (Французский)",
-                    hablemos: "Hablemos (Испанский)",
-                    pricing: "Цены",
-                    contact: "Контакты"
-                },
-                header: {
-                    title: "Тарифные планы YoLingo",
-                    subtitle: "Выберите идеальный план для вашего языкового обучения. Все цены указаны за 4 недели и включают полный доступ к учебным материалам YoLingo."
-                }
-            }
-        };
-        
-        document.querySelectorAll('.lang-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.preventDefault();
-                const lang = option.dataset.lang;
-                document.querySelectorAll('.lang-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                option.classList.add('active');
-                document.getElementById('languageDropdown').classList.remove('show');
-                
-                // Apply translations
-                applyTranslations(lang);
-                
-                // Show notification
-                showNotification(`Language changed to ${getLanguageName(lang)}`, 'success');
-                
-                // Store preference
-                localStorage.setItem('yolingo_language', lang);
-            });
-        });
-        
-        function getLanguageName(code) {
-            const names = {
-                'en': 'English',
-                'fr': 'Français',
-                'ru': 'Русский'
-            };
-            return names[code] || code.toUpperCase();
-        }
-        
-        function applyTranslations(lang) {
-            const translation = translations[lang] || translations.en;
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            if (navLinks[0]) navLinks[0].textContent = translation.nav.home;
-            if (navLinks[1]) navLinks[1].textContent = translation.nav.parlons;
-            if (navLinks[2]) navLinks[2].textContent = translation.nav.hablemos;
-            if (navLinks[3]) navLinks[3].textContent = translation.nav.pricing;
-            if (navLinks[4]) navLinks[4].textContent = translation.nav.contact;
-            
-            // Update header
-            const header = document.querySelector('.page-header');
-            if (header) {
-                const h1 = header.querySelector('h1');
-                const subtitle = header.querySelector('.subtitle');
-                if (h1) h1.textContent = translation.header.title;
-                if (subtitle) subtitle.textContent = translation.header.subtitle;
-            }
-            
-            // Update page title
-            document.title = `Pricing Plans - YoLingo Language School`;
-            
-            // Update language in contact form if exists
-            const languageInput = document.querySelector('input[name="_language"]');
-            if (languageInput) {
-                languageInput.value = lang;
-            }
-        }
-        
-        // ===== NAVIGATION =====
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
+        // Toggle mobile menu
+        function toggleMobileMenu() {
             navLinks.classList.toggle('active');
-            document.querySelector('.menu-toggle i').classList.toggle('fa-bars');
-            document.querySelector('.menu-toggle i').classList.toggle('fa-times');
+            menuToggle.classList.toggle('active');
+            
+            // Update icon
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = '';
+            }
         }
         
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
+        // Close menu when clicking a link
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                document.querySelector('.menu-toggle i').classList.remove('fa-times');
-                document.querySelector('.menu-toggle i').classList.add('fa-bars');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                document.body.style.overflow = '';
             }
         });
         
-        // ===== NOTIFICATION SYSTEM =====
-        function showNotification(message, type) {
-            // Remove any existing notifications
-            document.querySelectorAll('.custom-notification').forEach(n => n.remove());
-            
-            const notification = document.createElement('div');
-            notification.className = `custom-notification alert-${type}`;
-            notification.style.cssText = `
-                position: fixed;
-                top: 90px;
-                right: 20px;
-                z-index: 10000;
-                padding: 1rem 1.5rem;
-                border-radius: var(--radius-sm);
-                box-shadow: var(--shadow-hover);
-                background: ${type === 'success' ? 'var(--success)' : 
-                            type === 'error' ? 'var(--error)' : 
-                            type === 'warning' ? 'var(--warning)' : 'var(--info)'};
-                color: white;
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                animation: slideIn 0.3s ease-out;
-                max-width: 350px;
-                border-left: 4px solid ${type === 'success' ? 'rgba(16, 185, 129, 0.7)' : 
-                                    type === 'error' ? 'rgba(239, 68, 68, 0.7)' : 
-                                    type === 'warning' ? 'rgba(245, 158, 11, 0.7)' : 'rgba(59, 130, 246, 0.7)'};
-            `;
-            
-            const icon = type === 'success' ? 'fa-check-circle' :
-                        type === 'error' ? 'fa-exclamation-circle' :
-                        type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle';
-            
-            notification.innerHTML = `
-                <i class="fas ${icon}" style="font-size: 1.2rem;"></i>
-                <span style="flex: 1;">${message}</span>
-            `;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
-        }
+        // ===== NAVBAR SCROLL EFFECT =====
+        const navbar = document.getElementById('mainNav');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
         
         // ===== FAQ TOGGLE =====
-        function toggleFAQ(element) {
-            const allFAQ = document.querySelectorAll('.faq-item');
-            allFAQ.forEach(faq => {
-                if (faq !== element && faq.classList.contains('active')) {
-                    faq.classList.remove('active');
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== this && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                this.classList.toggle('active');
+            });
+        });
+        
+        // ===== PLAN HOVER EFFECTS =====
+        document.querySelectorAll('.plan').forEach(plan => {
+            plan.addEventListener('mouseenter', () => {
+                plan.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            plan.addEventListener('mouseleave', () => {
+                if (!plan.classList.contains('popular')) {
+                    plan.style.transform = 'translateY(0) scale(1)';
+                } else {
+                    plan.style.transform = 'scale(1.05) translateY(-15px)';
                 }
             });
             
-            element.classList.toggle('active');
-        }
-        
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', function() {
-                toggleFAQ(this);
+            // Touch feedback for mobile
+            plan.addEventListener('touchstart', () => {
+                plan.style.transform = 'scale(0.98)';
+            });
+            
+            plan.addEventListener('touchend', () => {
+                if (!plan.classList.contains('popular')) {
+                    plan.style.transform = 'scale(1)';
+                } else {
+                    plan.style.transform = 'scale(1.05)';
+                }
             });
         });
         
-        // ===== PLAN SELECTION =====
-        document.querySelectorAll('.plan .btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const plan = this.closest('.plan');
-                
-                // Add selection animation
-                plan.style.animation = 'pulse 0.5s';
-                
-                // Store selection
-                const planName = plan.querySelector('h3').textContent;
-                localStorage.setItem('yolingo_selected_plan', planName);
-                localStorage.setItem('yolingo_plan_selection_time', new Date().toISOString());
-                
-                // Add to URL for tracking
-                const url = new URL(this.href);
-                const currentParams = new URLSearchParams(url.search);
-                currentParams.set('selected_plan', planName.toLowerCase().replace(' ', '_'));
-                this.href = `${url.pathname}?${currentParams.toString()}`;
+        // ===== INITIALIZATION =====
+        window.addEventListener('DOMContentLoaded', () => {
+            // Event listeners
+            menuToggle.addEventListener('click', toggleMobileMenu);
+            
+            // Close mobile menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
             });
-        });
-        
-        // ===== PRICE CALCULATOR =====
-        function calculateSavings(planPrice, months) {
-            let discount = 0;
-            if (months >= 3) discount = 0.15;
-            else if (months >= 6) discount = 0.25;
             
-            const total = planPrice * months * (1 - discount);
-            const savings = planPrice * months * discount;
-            
-            return { total, savings, discount: discount * 100 };
-        }
-        
-        // ===== HIGHLIGHT POPULAR PLAN =====
-        window.addEventListener('load', function() {
+            // Highlight popular plan on load
             const popularPlan = document.querySelector('.plan.popular');
             if (popularPlan) {
                 setTimeout(() => {
@@ -617,119 +613,7 @@
                     }, 1000);
                 }, 1000);
             }
-            
-            // Check for URL parameters to pre-select plan
-            const urlParams = new URLSearchParams(window.location.search);
-            const selectedPlan = urlParams.get('selected_plan');
-            if (selectedPlan) {
-                const planElements = document.querySelectorAll('.plan');
-                planElements.forEach(plan => {
-                    const planTitle = plan.querySelector('h3').textContent.toLowerCase().replace(' ', '_');
-                    if (planTitle.includes(selectedPlan)) {
-                        plan.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        plan.style.boxShadow = '0 0 0 3px var(--primary), var(--shadow-glow)';
-                        setTimeout(() => {
-                            plan.style.boxShadow = '';
-                        }, 3000);
-                    }
-                });
-            }
-            
-            // Load saved language preference
-            const savedLang = localStorage.getItem('yolingo_language') || 'en';
-            const savedOption = document.querySelector(`.lang-option[data-lang="${savedLang}"]`);
-            if (savedOption) {
-                savedOption.click();
-            }
-            
-            // Load logo
-            const logoImage = document.querySelector('.logo-image');
-            if (logoImage) {
-                const img = new Image();
-                img.onload = function() {
-                    logoImage.innerHTML = `<img src="logo.jpg" alt="YoLingo" loading="lazy">`;
-                    logoImage.classList.add('loaded');
-                };
-                img.onerror = function() {
-                    logoImage.innerHTML = `
-                        <div style="background: var(--gradient-primary); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; box-shadow: var(--shadow);">
-                            YL
-                        </div>
-                    `;
-                    logoImage.classList.add('loaded');
-                };
-                img.src = 'logo.jpg';
-            }
         });
-        
-        // ===== ANIMATIONS =====
-        function animatePlansOnScroll() {
-            const plans = document.querySelectorAll('.plan, .service');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            plans.forEach(plan => {
-                plan.style.opacity = '0';
-                plan.style.transform = 'translateY(20px)';
-                plan.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(plan);
-            });
-        }
-        
-        // Initialize animations
-        window.addEventListener('load', animatePlansOnScroll);
-        
-        // ===== KEYBOARD NAVIGATION =====
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                document.getElementById('languageDropdown').classList.remove('show');
-                document.getElementById('navLinks').classList.remove('active');
-                document.querySelector('.menu-toggle i').classList.remove('fa-times');
-                document.querySelector('.menu-toggle i').classList.add('fa-bars');
-            }
-        });
-        
-        // Add CSS for animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
-            }
-            
-            @keyframes slideIn {
-                from {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-            
-            .faq-item p {
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease-out;
-            }
-            .faq-item.active p {
-                max-height: 500px;
-            }
-            
-            .custom-notification {
-                transition: all 0.3s ease;
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
