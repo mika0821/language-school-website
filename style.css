@@ -245,40 +245,48 @@ nav.scrolled {
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo image styling */
+/* ===== BIGGER LOGO STYLES ===== */
+.logo-image {
+    width: 80px; /* Increased from 70px */
+    height: 80px; /* Increased from 70px */
+    border-radius: 18px; /* Slightly larger radius */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    background: rgba(168, 85, 247, 0.15); /* Slightly more visible background */
+    border: 2px solid rgba(168, 85, 247, 0.3);
+    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+}
+
 .logo-image img {
-    height: 55px; /* Increased from 40px */
+    height: 60px; /* Increased from 50px - makes logo bigger */
     width: auto;
     display: block;
     transition: transform 0.3s ease;
-    
-    /* Remove white background - try this filter first */
-    filter: 
-        brightness(1.2) 
-        contrast(1.2)
-        drop-shadow(0 0 2px rgba(168, 85, 247, 0.3));
-}
-
-/* Remove the previous gradient shine effect from logo-image */
-.logo-image::before {
-    display: none; /* Remove the gradient shine effect */
+    /* Optional: Add a slight glow effect */
+    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.4));
 }
 
 .logo:hover .logo-image {
-    transform: rotate(-10deg) scale(1.1);
-    border-color: var(--primary);
-    box-shadow: var(--shadow-glow);
+    transform: rotate(-10deg) scale(1.15); /* Slightly more scale on hover */
+    background: rgba(168, 85, 247, 0.25);
+    border-color: var(--primary-light);
+    box-shadow: 
+        var(--shadow-glow),
+        0 0 40px rgba(168, 85, 247, 0.5);
 }
 
 .logo:hover .logo-image img {
-    transform: scale(1.05);
+    transform: scale(1.08); /* Slightly more scale on image */
+    filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6));
 }
 
 .logo-text-container {
     display: flex;
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 2.2rem;
+    font-size: 2.3rem; /* Slightly larger text to match bigger logo */
     line-height: 1;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
