@@ -230,41 +230,42 @@ nav.scrolled {
     transform: translateY(-3px);
 }
 
+/* ===== UPDATED LOGO STYLES FOR IMAGE LOGO ===== */
 .logo-image {
     width: 55px;
     height: 55px;
     border-radius: 16px;
-    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: 900;
-    font-size: 24px;
     box-shadow: var(--shadow);
     transition: var(--transition);
     position: relative;
     overflow: hidden;
+    background: transparent; /* Remove gradient background */
 }
 
+/* Logo image styling */
+.logo-image img {
+    height: 40px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease;
+    border-radius: 4px;
+}
+
+/* Remove the previous gradient shine effect from logo-image */
 .logo-image::before {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    background: var(--gradient-star);
-    transform: rotate(45deg);
-    animation: logoShine 3s infinite linear;
-}
-
-@keyframes logoShine {
-    0% { transform: translateX(-100%) rotate(45deg); }
-    100% { transform: translateX(100%) rotate(45deg); }
+    display: none; /* Remove the gradient shine effect */
 }
 
 .logo:hover .logo-image {
     transform: rotate(-10deg) scale(1.1);
     box-shadow: var(--shadow-glow);
+}
+
+.logo:hover .logo-image img {
+    transform: scale(1.05);
 }
 
 .logo-text-container {
@@ -1154,6 +1155,7 @@ footer::before {
         border-radius: var(--radius);
     }
     
+    /* Logo adjustments for mobile */
     .logo-text-container {
         font-size: 1.8rem;
     }
@@ -1161,7 +1163,30 @@ footer::before {
     .logo-image {
         width: 45px;
         height: 45px;
-        font-size: 20px;
+    }
+    
+    .logo-image img {
+        height: 35px; /* Slightly smaller for mobile */
+    }
+    
+    /* Stack logo and text vertically if needed on very small screens */
+    @media screen and (max-width: 480px) {
+        .logo {
+            gap: 8px; /* Reduce gap on very small screens */
+        }
+        
+        .logo-image {
+            width: 42px;
+            height: 42px;
+        }
+        
+        .logo-image img {
+            height: 32px; /* Even smaller for very small screens */
+        }
+        
+        .logo-text-container {
+            font-size: 1.6rem; /* Smaller text */
+        }
     }
     
     /* Hero */
@@ -1269,6 +1294,43 @@ footer::before {
     
     .social-links {
         justify-content: center;
+    }
+}
+
+/* For tablets and medium screens */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .logo-image img {
+        height: 38px; /* Slightly smaller than desktop */
+    }
+    
+    .logo-text-container {
+        font-size: 2rem; /* Adjust text size */
+    }
+}
+
+/* Make logo image touch-friendly on mobile */
+@media (hover: none) and (pointer: coarse) {
+    .logo-image img {
+        min-height: 44px; /* Minimum touch target size */
+        min-width: 44px;
+    }
+}
+
+/* Prevent layout shift when logo loads */
+.logo-image {
+    min-width: 40px; /* Match your logo width */
+    min-height: 40px; /* Match your logo height */
+}
+
+/* Add smooth fade-in for logo */
+.logo-image img {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
     }
 }
 
